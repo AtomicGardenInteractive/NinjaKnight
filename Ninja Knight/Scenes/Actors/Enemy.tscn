@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3508dvtauchh"]
+
+[ext_resource type="Texture2D" uid="uid://k6li4i6wiuw2" path="res://icon.svg" id="1_v13mr"]
+[ext_resource type="PackedScene" uid="uid://bsc423hw1127v" path="res://Scenes/Actors/Components/health_comp.tscn" id="2_r3xy5"]
+[ext_resource type="PackedScene" uid="uid://d0x03pj73ssfp" path="res://Scenes/Actors/Components/hit_box_comp.tscn" id="3_lk3oc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6nlqu"]
+size = Vector2(128, 128)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_v13mr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6nlqu")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+
+[node name="HealthComp" parent="." instance=ExtResource("2_r3xy5")]
+
+[node name="HitBoxComp" parent="." instance=ExtResource("3_lk3oc")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
