@@ -1,5 +1,6 @@
 extends State
 
+## Collsion on head object refrences
 @onready var rc_left = $"../../animations/Head Colision Detection/RC Left"
 @onready var rc_mid = $"../../animations/Head Colision Detection/RC Mid"
 @onready var rc_right = $"../../animations/Head Colision Detection/RC Right"

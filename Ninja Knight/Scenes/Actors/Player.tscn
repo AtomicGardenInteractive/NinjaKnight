@@ -39,27 +39,27 @@ metadata/_edit_lock_ = true
 position = Vector2(16, -0.75)
 shape = SubResource("RectangleShape2D_fc428")
 
-[node name="Head Colision Detection" type="Node" parent="animations"]
-
-[node name="RC Left" type="RayCast2D" parent="animations/Head Colision Detection"]
-position = Vector2(-8, -14)
-target_position = Vector2(0, -10)
-collide_with_areas = true
-
-[node name="RC Mid" type="RayCast2D" parent="animations/Head Colision Detection"]
-position = Vector2(0, -14)
-target_position = Vector2(0, -10)
-collide_with_areas = true
-
-[node name="RC Right" type="RayCast2D" parent="animations/Head Colision Detection"]
-position = Vector2(8, -14)
-target_position = Vector2(0, -10)
-collide_with_areas = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_q82bc")
 metadata/_edit_lock_ = true
+
+[node name="Head Colision Detection" type="Node" parent="."]
+
+[node name="RC Left" type="RayCast2D" parent="Head Colision Detection"]
+position = Vector2(-8, -14)
+target_position = Vector2(0, -10)
+collide_with_areas = true
+
+[node name="RC Mid" type="RayCast2D" parent="Head Colision Detection"]
+position = Vector2(0, -14)
+target_position = Vector2(0, -10)
+collide_with_areas = true
+
+[node name="RC Right" type="RayCast2D" parent="Head Colision Detection"]
+position = Vector2(8, -14)
+target_position = Vector2(0, -10)
+collide_with_areas = true
 
 [node name="state_machine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_mde7v")
