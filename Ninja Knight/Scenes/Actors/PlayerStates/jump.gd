@@ -1,9 +1,9 @@
 extends State
 
 ## Collsion on head object refrences
-@onready var rc_left = $"../../animations/Head Colision Detection/RC Left"
-@onready var rc_mid = $"../../animations/Head Colision Detection/RC Mid"
-@onready var rc_right = $"../../animations/Head Colision Detection/RC Right"
+##@onready var rc_left = $"../../animations/Head Colision Detection/RC Left"
+##@onready var rc_mid = $"../../animations/Head Colision Detection/RC Mid"
+##@onready var rc_right = $"../../animations/Head Colision Detection/RC Right"
 
 
 @export_group("States")
@@ -31,14 +31,14 @@ func process_physics(delta: float) -> State:
 	if parent.velocity.y > 0:
 		return fall_state
 	
-	if rc_right.is_colliding() and !rc_mid.is_colliding() \
-		and !rc_left.is_colliding():
-			parent.global_position.x -= 5
-			print("Moved +5")
-	elif rc_left.is_colliding() and !rc_mid.is_colliding() \
-		and !rc_right.is_colliding():
-			parent.global_position.x = 5
-			print("Moved -5")
+	#if rc_right.is_colliding() and !rc_mid.is_colliding() \
+	#	and !rc_left.is_colliding():
+	#		parent.global_position.x -= 5
+	#		print("Moved +5")
+	#elif rc_left.is_colliding() and !rc_mid.is_colliding() \
+	#	and !rc_right.is_colliding():
+	#		parent.global_position.x = 5
+	#		print("Moved -5")
 	
 	var movement = Input.get_axis('move_left', 'move_right') * move_speed
 	
