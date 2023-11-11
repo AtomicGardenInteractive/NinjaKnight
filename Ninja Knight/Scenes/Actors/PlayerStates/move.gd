@@ -20,7 +20,7 @@ func process_input(_event: InputEvent) -> State:
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	
-	var movement = Input.get_axis('move_left', 'move_right') * move_speed
+	var movement = Input.get_axis('move_left','move_right') * move_speed
 	
 	if movement == 0:
 		return idle_state
@@ -32,7 +32,3 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return fall_state
 	return null
-
-func exit() ->void:
-	parent.coyotetime_enabled = true
-

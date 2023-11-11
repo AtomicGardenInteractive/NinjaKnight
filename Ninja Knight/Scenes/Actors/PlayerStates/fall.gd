@@ -26,7 +26,7 @@ func enter() -> void:
 
 
 func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed('move_jump') and parent.coyotetime_enabled:
+	if Input.is_action_just_pressed('move_jump') and parent.prev_state != jump_state:
 		if coyote_timer > 0:
 			return jump_state
 
@@ -55,7 +55,3 @@ func process_physics(delta: float) -> State:
 			return move_state
 		return idle_state
 	return null
-	
-func exit() ->void:
-	"prev_state = self_state
-	print(prev_state)"

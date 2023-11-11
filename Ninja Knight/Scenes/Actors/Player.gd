@@ -8,7 +8,7 @@ var state_machine = $state_machine
 
 #Singleton varibales that multiple states need
 var prev_state: State 
-var coyotetime_enabled : bool = true
+#var coyotetime_enabled : bool = true
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
