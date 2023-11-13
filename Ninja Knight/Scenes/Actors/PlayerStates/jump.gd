@@ -2,8 +2,6 @@ extends State
 
 @export_group("States")
 @export
-var self_state: State
-@export
 var fall_state: State
 @export
 var idle_state: State

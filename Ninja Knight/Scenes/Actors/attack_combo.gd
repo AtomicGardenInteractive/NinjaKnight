@@ -7,28 +7,17 @@ var move_state: State
 var fall_state: State
 @export
 var idle_state: State
-@export
-var attack_combo_state: State
 
 @export_group("Animation timer")
 @export
 var attack_time = 0.3
 
-#combo trigger
-var combo_ready = false
-#timers
 var attack_timer = 0.0
 
-#sets/resets timers on state change
 func enter() -> void:
 	parent.animations.play(animation_name)
 	attack_timer = attack_time
 	return
-
-func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed("attack"):
-		combo_ready = true
-	return null
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
@@ -44,8 +33,6 @@ func process_physics(delta: float) -> State:
 	attack_timer -= delta
 	
 	if attack_timer <= 0:
-		if combo_ready:
-			return attack_combo_state
 		if !parent.is_on_floor():
 			return fall_state
 		if movement != 0:

@@ -6,9 +6,8 @@ var animations = $animations
 @onready
 var state_machine = $state_machine
 
-#Singleton varibales that multiple states need
-var prev_state: State 
-#var coyotetime_enabled : bool = true
+#Singleton variables that multiple states need
+var prev_state: State
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,

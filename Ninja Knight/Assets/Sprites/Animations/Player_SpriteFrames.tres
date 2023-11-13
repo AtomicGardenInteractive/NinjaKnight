@@ -290,7 +290,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_co6ok")
 }],
-"loop": false,
+"loop": true,
 "name": &"Attack",
 "speed": 12.0
 }, {
@@ -367,7 +367,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Block_Active",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,

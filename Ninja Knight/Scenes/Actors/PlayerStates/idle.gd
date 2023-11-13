@@ -19,9 +19,10 @@ func process_input(_event: InputEvent) -> State:
 		return jump_state
 	if Input.is_action_just_pressed('move_left') or Input.is_action_just_pressed('move_right') or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		return move_state
-	return null
 	if Input.is_action_just_pressed('attack'):
 		return attack_State
+	return null
+	
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
