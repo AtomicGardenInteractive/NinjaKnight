@@ -1,5 +1,6 @@
 extends State
 
+
 @export_group("States")
 @export
 var fall_state: State
@@ -7,8 +8,6 @@ var fall_state: State
 var idle_state: State
 @export
 var move_state: State
-@export
-var double_jump_state: State
 
 @export_group ("Other")
 @export
@@ -18,12 +17,6 @@ func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
 	return
-
-func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed('move_jump') and parent.prev_state != double_jump_state:
-		parent.has_double_jumped = true
-		return double_jump_state
-	return null
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
@@ -44,3 +37,4 @@ func process_physics(delta: float) -> State:
 		return idle_state
 	
 	return null
+

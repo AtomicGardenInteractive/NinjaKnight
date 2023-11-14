@@ -43,8 +43,9 @@ func process_physics(delta: float) -> State:
 	#timers tick down with delta
 	attack_timer -= delta
 	
-	if attack_timer <= 0:
+	if attack_timer < 0:
 		if combo_ready:
+			combo_ready = false
 			return attack_combo_state
 		if !parent.is_on_floor():
 			return fall_state

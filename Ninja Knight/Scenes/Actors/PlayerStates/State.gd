@@ -16,6 +16,7 @@ func enter() -> void:
 
 func exit() -> void:
 	parent.prev_state = self
+	#print (self)
 
 func process_input(_event: InputEvent) -> State:
 	return null

@@ -8,6 +8,7 @@ var state_machine = $state_machine
 
 #Singleton variables that multiple states need
 var prev_state: State
+var has_double_jumped: = false
 
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
@@ -19,6 +20,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	state_machine.process_physics(delta)
+	if is_on_floor():
+		has_double_jumped = false
+	
 
 func _process(delta: float) -> void:
 	state_machine.process_frame(delta)

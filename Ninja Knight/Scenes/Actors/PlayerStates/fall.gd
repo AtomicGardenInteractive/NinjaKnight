@@ -9,9 +9,11 @@ var move_state: State
 var jump_state: State
 @export
 var attack_state: State
+@export
+var double_jump_state : State
 
 @export_group("Player safeguards Properties")
-@export var jump_buffer_time = 0.1
+@export var jump_buffer_time = 0.3
 @export var attack_buffer_time = 0.1
 @export var coyote_time = 0.2
 
@@ -22,6 +24,7 @@ var coyote_timer: float = 0.0
 
 #sets/resets timers on state change
 func enter() -> void:
+	super()
 	jump_buffer_timer = 0.0
 	attack_buffer_timer = 0.0
 	coyote_timer = coyote_time
@@ -29,12 +32,19 @@ func enter() -> void:
 
 
 func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed('move_jump') and parent.prev_state != jump_state:
-		if coyote_timer > 0:
+	
+	if coyote_timer > 0 and parent.prev_state != jump_state and parent.prev_state != double_jump_state:
+		if Input.is_action_just_pressed('move_jump') and parent.prev_state != jump_state:
+			print("Im coyote jumping")
 			return jump_state
-
-	if Input.is_action_just_pressed('move_jump'):
+	elif Input.is_action_just_pressed('move_jump') and !parent.has_double_jumped:
+		parent.has_double_jumped = true
+		print("hey we Jumped 2 times", parent.has_double_jumped)
+		return double_jump_state
+	elif Input.is_action_just_pressed('move_jump'):
+		print("buffer time") 
 		jump_buffer_timer = jump_buffer_time
+
 	if Input.is_action_just_pressed('attack'):
 		attack_buffer_timer = attack_buffer_time
 	return null
