@@ -15,7 +15,7 @@ var attack_time = 0.3
 var attack_timer = 0.0
 
 func enter() -> void:
-	parent.animations.play(animation_name)
+	super()
 	attack_timer = attack_time
 	return
 
@@ -39,3 +39,7 @@ func process_physics(delta: float) -> State:
 			return move_state
 		return idle_state
 	return null
+
+
+func _on_sword_hit_area_entered(area):
+	pass # Replace with function body.

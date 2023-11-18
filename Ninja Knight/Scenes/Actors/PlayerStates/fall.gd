@@ -11,6 +11,8 @@ var jump_state: State
 var attack_state: State
 @export
 var double_jump_state : State
+@export
+var dodge_state: State
 
 @export_group("Player safeguards Properties")
 @export var jump_buffer_time = 0.3
@@ -33,13 +35,14 @@ func enter() -> void:
 
 func process_input(_event: InputEvent) -> State:
 	
+	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:
+		return dodge_state
+	
 	if coyote_timer > 0 and parent.prev_state != jump_state and parent.prev_state != double_jump_state:
 		if Input.is_action_just_pressed('move_jump') and parent.prev_state != jump_state:
-			print("Im coyote jumping")
 			return jump_state
 	elif Input.is_action_just_pressed('move_jump') and !parent.has_double_jumped:
 		parent.has_double_jumped = true
-		print("hey we Jumped 2 times", parent.has_double_jumped)
 		return double_jump_state
 	elif Input.is_action_just_pressed('move_jump'):
 		print("buffer time") 

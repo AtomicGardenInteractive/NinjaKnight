@@ -9,6 +9,10 @@ var jump_state: State
 var move_state: State
 @export
 var attack_State: State
+@export
+var dodge_state: State
+@export
+var block_state: State
 
 func enter() -> void:
 	super()
@@ -21,6 +25,10 @@ func process_input(_event: InputEvent) -> State:
 		return move_state
 	if Input.is_action_just_pressed('attack'):
 		return attack_State
+	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:
+		return dodge_state
+	if Input.is_action_just_pressed('block'):
+		return block_state
 	return null
 	
 

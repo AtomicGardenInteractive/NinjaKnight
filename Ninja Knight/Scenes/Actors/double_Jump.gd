@@ -8,6 +8,8 @@ var fall_state: State
 var idle_state: State
 @export
 var move_state: State
+@export
+var dodge_state: State
 
 @export_group ("Other")
 @export
@@ -17,6 +19,10 @@ func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
 	return
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:
+		return dodge_state
+	return null
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta

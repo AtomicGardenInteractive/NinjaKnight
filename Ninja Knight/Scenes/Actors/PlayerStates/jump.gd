@@ -9,6 +9,8 @@ var idle_state: State
 var move_state: State
 @export
 var double_jump_state: State
+@export
+var dodge_state: State
 
 @export_group ("Other")
 @export
@@ -23,6 +25,8 @@ func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('move_jump') and parent.prev_state != double_jump_state:
 		parent.has_double_jumped = true
 		return double_jump_state
+	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:
+		return dodge_state
 	return null
 
 func process_physics(delta: float) -> State:
