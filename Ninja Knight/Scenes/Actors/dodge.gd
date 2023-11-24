@@ -24,7 +24,6 @@ var dodge_timer : float = 0.0
 
 func enter() -> void:
 	super()
-	print("Dodge")
 	parent.velocity = Vector2(0,0)
 	if parent.animations.flip_h:
 		parent.velocity.x = -dodge_force
@@ -34,7 +33,7 @@ func enter() -> void:
 	attack_buffer_timer = 0.0
 	dodge_timer = dodge_time
 	return
-	
+
 func process_input(_event: InputEvent) -> State:
 	
 	if Input.is_action_just_pressed('move_jump'):
@@ -58,6 +57,8 @@ func process_physics(delta: float) -> State:
 	elif dodge_timer < 0:
 		return fall_state
 	return null
+
 func exit() -> void:
+	super()
 	parent.dodge_cooldown_timer = parent.dodge_cooldown
 	return

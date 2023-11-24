@@ -19,6 +19,7 @@ func enter() -> void:
 	super()
 	parent.velocity.y = -jump_force
 	return
+
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:
 		return dodge_state
@@ -43,4 +44,3 @@ func process_physics(delta: float) -> State:
 		return idle_state
 	
 	return null
-

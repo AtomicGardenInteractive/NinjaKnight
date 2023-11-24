@@ -12,7 +12,7 @@ var attack_combo_state: State
 
 @export_group("Animation timer")
 @export
-var attack_time = 0.3
+var attack_time = 0.35
 
 #combo trigger
 var combo_ready = false
@@ -24,6 +24,10 @@ func enter() -> void:
 	super()
 	attack_timer = attack_time
 	return
+
+func exit() -> void:
+	super()
+	parent.attack_cooldown_timer = parent.attack_cooldown
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("attack"):

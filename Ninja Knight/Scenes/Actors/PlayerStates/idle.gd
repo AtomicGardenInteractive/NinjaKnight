@@ -23,7 +23,7 @@ func process_input(_event: InputEvent) -> State:
 		return jump_state
 	if Input.is_action_just_pressed('move_left') or Input.is_action_just_pressed('move_right') or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		return move_state
-	if Input.is_action_just_pressed('attack'):
+	if Input.is_action_just_pressed('attack') and parent.attack_cooldown_timer < 0:
 		return attack_State
 	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:
 		return dodge_state

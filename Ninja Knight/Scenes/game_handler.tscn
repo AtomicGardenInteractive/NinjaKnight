@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1hqm7y7kgnvx"]
+
+[ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
+[ext_resource type="PackedScene" uid="uid://ct1dtslkycmrk" path="res://Scenes/Actors/Player.tscn" id="2_dd0a3"]
+[ext_resource type="Script" path="res://Scenes/Actors/PlayerCamera.gd" id="3_sy4fd"]
+[ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/pause_menu.tscn" id="4_677ik"]
+
+[node name="Game_Handler" type="Node"]
+process_mode = 3
+
+[node name="Level_Loader" type="Node" parent="."]
+
+[node name="Level 1" type="Node2D" parent="Level_Loader"]
+visible = false
+
+[node name="Level 2" type="Node2D" parent="Level_Loader"]
+visible = false
+
+[node name="Level 3" type="Node2D" parent="Level_Loader"]
+visible = false
+
+[node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
+
+[node name="Player" parent="Level_Loader/Level_Test" instance=ExtResource("2_dd0a3")]
+position = Vector2(48, 1000)
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+script = ExtResource("3_sy4fd")
+TargetNodepath = NodePath("../Level_Loader/Level_Test/Player")
+
+[node name="PauseMenu" parent="PlayerCamera" instance=ExtResource("4_677ik")]
+visible = false
+
+[node name="Node" type="Node" parent="."]

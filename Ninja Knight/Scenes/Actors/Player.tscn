@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct1dtslkycmrk"]
+[gd_scene load_steps=19 format=3 uid="uid://ct1dtslkycmrk"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player.gd" id="1_fvvli"]
 [ext_resource type="SpriteFrames" uid="uid://btoqcq38ikcrd" path="res://Assets/Sprites/Animations/Player_SpriteFrames.tres" id="1_infe4"]
@@ -13,6 +13,9 @@
 [ext_resource type="Script" path="res://Scenes/Actors/dodge.gd" id="11_x7wmm"]
 [ext_resource type="Script" path="res://Scenes/Actors/block.gd" id="12_ed5sy"]
 [ext_resource type="Script" path="res://Scenes/Actors/block_parry.gd" id="13_w6wcu"]
+[ext_resource type="Script" path="res://Scenes/Actors/damaged.gd" id="14_um3ow"]
+[ext_resource type="Script" path="res://Scenes/Actors/death_ground.gd" id="15_yuh1t"]
+[ext_resource type="Script" path="res://Scenes/Actors/death_air.gd" id="16_wnfn2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc428"]
 size = Vector2(32, 33.5)
@@ -26,9 +29,9 @@ script = ExtResource("1_fvvli")
 [node name="animations" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = ExtResource("1_infe4")
-animation = &"Damaged"
-frame = 1
-frame_progress = 0.694474
+animation = &"Jump"
+frame = 5
+frame_progress = 1.0
 metadata/_edit_lock_ = true
 
 [node name="SwordHit" type="Area2D" parent="animations"]
@@ -94,6 +97,7 @@ idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 dodge_state = NodePath("../dodge")
 jump_force = 300.0
+animation_name = "Double_Jump"
 
 [node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "attack_combo_state")]
 script = ExtResource("8_ea2a6")
@@ -134,13 +138,17 @@ idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "Block_Parry"
 
-[node name="Node" type="Node" parent="."]
+[node name="damaged" type="Node" parent="state_machine"]
+script = ExtResource("14_um3ow")
+animation_name = "Damaged"
 
-[node name="damaged" type="Node" parent="Node"]
+[node name="death_ground" type="Node" parent="state_machine"]
+script = ExtResource("15_yuh1t")
+animation_name = "Death_Ground"
 
-[node name="death_ground" type="Node" parent="Node"]
-
-[node name="death_air" type="Node" parent="Node"]
+[node name="death_air" type="Node" parent="state_machine"]
+script = ExtResource("16_wnfn2")
+animation_name = "Death_Air"
 
 [connection signal="area_entered" from="animations/SwordHit" to="state_machine/attack" method="_on_sword_hit_area_entered"]
 [connection signal="area_entered" from="animations/SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_area_entered"]
