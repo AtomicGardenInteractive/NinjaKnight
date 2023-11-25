@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1ewykgtaow15"]
+[gd_scene load_steps=5 format=3 uid="uid://b1ewykgtaow15"]
 
 [ext_resource type="Texture2D" uid="uid://diggubagy0y83" path="res://Assets/Sprites/Ninja_Knight_Greybox_Tileset.png" id="1_ara68"]
 [ext_resource type="Material" uid="uid://sltawm8cmsts" path="res://Assets/Sprites/Shader/SmoothPixels.tres" id="1_fdsdg"]
-[ext_resource type="Script" path="res://Scenes/Levels/pause_menu.gd" id="2_yw1gq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ajj8u"]
 texture = ExtResource("1_ara68")
@@ -58,7 +57,6 @@ sources/1 = SubResource("TileSetAtlasSource_ajj8u")
 
 [node name="Level" type="Node2D"]
 material = ExtResource("1_fdsdg")
-script = ExtResource("2_yw1gq")
 
 [node name="TileMap" type="TileMap" parent="."]
 use_parent_material = true

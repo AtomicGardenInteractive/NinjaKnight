@@ -1,25 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=9 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
+[ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
+[ext_resource type="PackedScene" uid="uid://bjbly4cqm6q08" path="res://Scenes/Levels/level_1.tscn" id="2_bj471"]
 [ext_resource type="PackedScene" uid="uid://ct1dtslkycmrk" path="res://Scenes/Actors/Player.tscn" id="2_dd0a3"]
+[ext_resource type="PackedScene" uid="uid://dqucj7h31vsmd" path="res://Scenes/Levels/level_2.tscn" id="3_ims51"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerCamera.gd" id="3_sy4fd"]
-[ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/pause_menu.tscn" id="4_677ik"]
+[ext_resource type="PackedScene" uid="uid://desouleebohxu" path="res://Scenes/Levels/level_3.tscn" id="4_s1yen"]
+[ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
 
 [node name="Game_Handler" type="Node"]
 process_mode = 3
+script = ExtResource("1_uqhqr")
 
 [node name="Level_Loader" type="Node" parent="."]
 
-[node name="Level 1" type="Node2D" parent="Level_Loader"]
-visible = false
+[node name="Level 1" parent="Level_Loader" instance=ExtResource("2_bj471")]
 
-[node name="Level 2" type="Node2D" parent="Level_Loader"]
-visible = false
+[node name="Level 2" parent="Level_Loader" instance=ExtResource("3_ims51")]
 
-[node name="Level 3" type="Node2D" parent="Level_Loader"]
-visible = false
+[node name="Level 3" parent="Level_Loader" instance=ExtResource("4_s1yen")]
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
+process_mode = 1
 
 [node name="Player" parent="Level_Loader/Level_Test" instance=ExtResource("2_dd0a3")]
 position = Vector2(48, 1000)
@@ -28,7 +31,7 @@ position = Vector2(48, 1000)
 script = ExtResource("3_sy4fd")
 TargetNodepath = NodePath("../Level_Loader/Level_Test/Player")
 
-[node name="PauseMenu" parent="PlayerCamera" instance=ExtResource("4_677ik")]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Node" type="Node" parent="."]
+[node name="Pause Menu" parent="CanvasLayer" node_paths=PackedStringArray("game_handler") instance=ExtResource("8_edo4n")]
+game_handler = NodePath("../..")

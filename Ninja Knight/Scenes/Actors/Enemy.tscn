@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3508dvtauchh"]
+[gd_scene load_steps=6 format=3 uid="uid://c3508dvtauchh"]
 
 [ext_resource type="Texture2D" uid="uid://k6li4i6wiuw2" path="res://icon.svg" id="1_v13mr"]
 [ext_resource type="PackedScene" uid="uid://bsc423hw1127v" path="res://Scenes/Actors/Components/health_comp.tscn" id="2_r3xy5"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6nlqu"]
 size = Vector2(128, 128)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bugta"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 
@@ -15,10 +17,12 @@ texture = ExtResource("1_v13mr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6nlqu")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-
 [node name="HealthComp" parent="." instance=ExtResource("2_r3xy5")]
 
 [node name="HitBoxComp" parent="." instance=ExtResource("3_lk3oc")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+tree_root = SubResource("AnimationNodeStateMachine_bugta")
+anim_player = NodePath("..")
