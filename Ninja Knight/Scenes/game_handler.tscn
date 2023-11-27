@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=11 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
@@ -8,10 +8,15 @@
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerCamera.gd" id="3_sy4fd"]
 [ext_resource type="PackedScene" uid="uid://desouleebohxu" path="res://Scenes/Levels/level_3.tscn" id="4_s1yen"]
 [ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
+[ext_resource type="PackedScene" uid="uid://8igs4n8mmgrb" path="res://Scenes/UI/load_menu.tscn" id="9_wcbe2"]
+[ext_resource type="PackedScene" uid="uid://bfykqvlhputuv" path="res://Scenes/UI/options_menu.tscn" id="10_5prgp"]
 
-[node name="Game_Handler" type="Node"]
+[node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu")]
 process_mode = 3
 script = ExtResource("1_uqhqr")
+pause_menu = NodePath("Pause_Menu_Layer/Pause_Menu")
+load_menu = NodePath("Load_Menu_Layer/Load_Menu")
+options_menu = NodePath("Options_Menu_Layer/Options_Menu")
 
 [node name="Level_Loader" type="Node" parent="."]
 
@@ -31,7 +36,19 @@ position = Vector2(48, 1000)
 script = ExtResource("3_sy4fd")
 TargetNodepath = NodePath("../Level_Loader/Level_Test/Player")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Pause_Menu_Layer" type="CanvasLayer" parent="."]
 
-[node name="Pause Menu" parent="CanvasLayer" node_paths=PackedStringArray("game_handler") instance=ExtResource("8_edo4n")]
+[node name="Pause_Menu" parent="Pause_Menu_Layer" node_paths=PackedStringArray("game_handler", "options_menu", "load_menu") instance=ExtResource("8_edo4n")]
+game_handler = NodePath("../..")
+options_menu = NodePath("../../Load_Menu_Layer")
+load_menu = NodePath("../../Options_Menu_Layer")
+
+[node name="Load_Menu_Layer" type="CanvasLayer" parent="."]
+
+[node name="Load_Menu" parent="Load_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("9_wcbe2")]
+game_handler = NodePath("../..")
+
+[node name="Options_Menu_Layer" type="CanvasLayer" parent="."]
+
+[node name="Options_Menu" parent="Options_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("10_5prgp")]
 game_handler = NodePath("../..")
