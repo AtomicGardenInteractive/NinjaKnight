@@ -29,6 +29,11 @@ func process_input(_event: InputEvent) -> State:
 		return dodge_state
 	if Input.is_action_just_pressed('block'):
 		return block_state
+	if Input.is_action_just_pressed("move_drop"):
+		parent.set_collision_mask(2)
+	if Input.is_action_just_released("move_drop"):
+		parent.set_collision_mask(1)
+	
 	return null
 	
 

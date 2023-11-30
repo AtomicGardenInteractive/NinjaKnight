@@ -17,7 +17,13 @@ var jump_force: float = 400.0
 
 func enter() -> void:
 	super()
+	parent.set_collision_mask(2)
 	parent.velocity.y = -jump_force
+	return
+
+func exit() -> void:
+	super()
+	parent.set_collision_mask(1)
 	return
 
 func process_input(_event: InputEvent) -> State:

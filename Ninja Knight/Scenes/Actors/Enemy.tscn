@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://c3508dvtauchh"]
+[gd_scene load_steps=26 format=3 uid="uid://c3508dvtauchh"]
 
+[ext_resource type="Script" path="res://Scenes/Actors/Enemy.gd" id="1_0v5gb"]
 [ext_resource type="Texture2D" uid="uid://c5yf6dn32s2o7" path="res://Assets/Sprites/Enemies/Goblin/Attack_Goblin_Character.png" id="1_2lik6"]
-[ext_resource type="PackedScene" uid="uid://bsc423hw1127v" path="res://Scenes/Actors/Components/health_comp.tscn" id="2_r3xy5"]
 [ext_resource type="Texture2D" uid="uid://cbtmwmv7g5wca" path="res://Assets/Sprites/Enemies/Goblin/Idle_Goblin_Character.png" id="2_vn4we"]
-[ext_resource type="PackedScene" uid="uid://d0x03pj73ssfp" path="res://Scenes/Actors/Components/hit_box_comp.tscn" id="3_lk3oc"]
 [ext_resource type="Texture2D" uid="uid://ub5ofhbjhqmy" path="res://Assets/Sprites/Enemies/Goblin/Walk_Goblin_Character.png" id="3_w5xn6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fqxh"]
@@ -137,9 +136,19 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fv08x"]
-size = Vector2(22, 26)
+size = Vector2(22, 21)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrj3r"]
+size = Vector2(22, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erbwr"]
+size = Vector2(21, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hksxr"]
+size = Vector2(19, 21)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_0v5gb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_edf77")
@@ -147,10 +156,30 @@ animation = &"Attack"
 frame = 8
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3)
+[node name="Body Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_fv08x")
 
-[node name="HealthComp" parent="." instance=ExtResource("2_r3xy5")]
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="HitBoxComp" parent="." instance=ExtResource("3_lk3oc")]
+[node name="Damage received collision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-1, 5.5)
+shape = SubResource("RectangleShape2D_wrj3r")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-11, 0)
+target_position = Vector2(0, 20)
+
+[node name="Attack Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Area"]
+position = Vector2(-11.5, 5.5)
+shape = SubResource("RectangleShape2D_erbwr")
+
+[node name="Attack Trigger Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(-9.5, 5.5)
+shape = SubResource("RectangleShape2D_hksxr")
+
+[connection signal="area_entered" from="Attack Trigger Area" to="." method="_on_attack_trigger_area_area_entered"]

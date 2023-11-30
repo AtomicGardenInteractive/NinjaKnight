@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=12 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
 [ext_resource type="PackedScene" uid="uid://8igs4n8mmgrb" path="res://Scenes/UI/load_menu.tscn" id="9_wcbe2"]
 [ext_resource type="PackedScene" uid="uid://bfykqvlhputuv" path="res://Scenes/UI/options_menu.tscn" id="10_5prgp"]
+[ext_resource type="PackedScene" uid="uid://c3508dvtauchh" path="res://Scenes/Actors/Enemy.tscn" id="11_5haog"]
 
 [node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu")]
 process_mode = 3
@@ -52,3 +53,8 @@ game_handler = NodePath("../..")
 
 [node name="Options_Menu" parent="Options_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("10_5prgp")]
 game_handler = NodePath("../..")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(268, 1003)
+enemy_health = null
+enemy_damage = null

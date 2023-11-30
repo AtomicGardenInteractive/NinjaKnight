@@ -24,6 +24,9 @@ var dodge_timer : float = 0.0
 
 func enter() -> void:
 	super()
+	parent.set_collision_layer(2)
+	parent.set_collision_mask(2)
+
 	parent.velocity = Vector2(0,0)
 	if parent.animations.flip_h:
 		parent.velocity.x = -dodge_force
@@ -60,5 +63,7 @@ func process_physics(delta: float) -> State:
 
 func exit() -> void:
 	super()
+	parent.set_collision_layer(1)
+	parent.set_collision_mask(1)
 	parent.dodge_cooldown_timer = parent.dodge_cooldown
 	return
