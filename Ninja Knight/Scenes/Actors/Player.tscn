@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ct1dtslkycmrk"]
+[gd_scene load_steps=20 format=3 uid="uid://ct1dtslkycmrk"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player.gd" id="1_fvvli"]
 [ext_resource type="SpriteFrames" uid="uid://btoqcq38ikcrd" path="res://Assets/Sprites/Animations/Player_SpriteFrames.tres" id="1_infe4"]
@@ -16,14 +16,15 @@
 [ext_resource type="Script" path="res://Scenes/Actors/damaged.gd" id="14_um3ow"]
 [ext_resource type="Script" path="res://Scenes/Actors/death_ground.gd" id="15_yuh1t"]
 [ext_resource type="Script" path="res://Scenes/Actors/death_air.gd" id="16_wnfn2"]
+[ext_resource type="Script" path="res://Scenes/Actors/Damageble.gd" id="17_ltacr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc428"]
-size = Vector2(32, 33.5)
+size = Vector2(64, 33.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q82bc"]
 size = Vector2(16, 30)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_fvvli")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
@@ -38,7 +39,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_lock_ = true
 
 [node name="Attack Area" type="CollisionShape2D" parent="animations/SwordHit"]
-position = Vector2(16, -0.75)
+position = Vector2(0, -0.75)
 shape = SubResource("RectangleShape2D_fc428")
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
@@ -150,6 +151,8 @@ animation_name = "Death_Ground"
 script = ExtResource("16_wnfn2")
 animation_name = "Death_Air"
 
-[connection signal="area_entered" from="animations/SwordHit" to="state_machine/attack" method="_on_sword_hit_area_entered"]
-[connection signal="area_entered" from="animations/SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_area_entered"]
-[connection signal="area_entered" from="animations/SwordHit" to="state_machine/block" method="_on_sword_hit_area_entered"]
+[node name="Damageble" type="Node" parent="."]
+script = ExtResource("17_ltacr")
+
+[connection signal="body_entered" from="animations/SwordHit" to="state_machine/attack" method="_on_sword_hit_body_entered"]
+[connection signal="body_entered" from="animations/SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_body_entered"]

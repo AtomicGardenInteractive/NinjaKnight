@@ -11,6 +11,7 @@ var idle_state: State
 @export_group("Animation timer")
 @export
 var attack_time = 0.3
+var damage = 1
 
 var attack_timer = 0.0
 
@@ -41,5 +42,7 @@ func process_physics(delta: float) -> State:
 	return null
 
 
-func _on_sword_hit_area_entered(area):
-	pass # Replace with function body.
+func _on_sword_hit_body_entered(body):
+	for child in body.get_children():
+		if child is Damageable:
+			child.hit(damage)

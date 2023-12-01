@@ -27,15 +27,18 @@ options_menu = NodePath("Options_Menu_Layer/Options_Menu")
 
 [node name="Level 3" parent="Level_Loader" instance=ExtResource("4_s1yen")]
 
+[node name="Player" parent="Level_Loader/Level 3" instance=ExtResource("2_dd0a3")]
+
+[node name="CharacterBody2D" parent="Level_Loader/Level 3" instance=ExtResource("11_5haog")]
+position = Vector2(722, 29)
+
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
 process_mode = 1
-
-[node name="Player" parent="Level_Loader/Level_Test" instance=ExtResource("2_dd0a3")]
-position = Vector2(48, 1000)
+visible = false
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_sy4fd")
-TargetNodepath = NodePath("../Level_Loader/Level_Test/Player")
+TargetNodepath = NodePath("../Level_Loader/Level 3/Player")
 
 [node name="Pause_Menu_Layer" type="CanvasLayer" parent="."]
 
@@ -54,7 +57,32 @@ game_handler = NodePath("../..")
 [node name="Options_Menu" parent="Options_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("10_5prgp")]
 game_handler = NodePath("../..")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("11_5haog")]
-position = Vector2(268, 1003)
-enemy_health = null
-enemy_damage = null
+[node name="Enemy" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(776, 28)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(832, 28)
+
+[node name="Enemy3" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(1501, 29)
+
+[node name="Enemy4" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(1554, 30)
+
+[node name="Enemy5" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(1078, 29)
+
+[node name="Enemy6" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(1172, -756)
+
+[node name="Enemy7" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(1023, -757)
+
+[node name="Enemy8" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(485, -758)
+
+[node name="Enemy9" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(386, -760)
+
+[node name="Enemy10" parent="." instance=ExtResource("11_5haog")]
+position = Vector2(315, -760)

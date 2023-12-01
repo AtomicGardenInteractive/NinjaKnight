@@ -36,8 +36,5 @@ func _process(delta: float) -> void:
 	dodge_cooldown_timer -= delta
 	attack_cooldown_timer -= delta
 
-func take_damage(int):
-	player_health_current - int
-
-func death():
+func take_damage():
 	pass

@@ -31,7 +31,7 @@ func process_physics(delta: float) -> State:
 	return null
 
 
-func _on_sword_hit_area_entered(area):
+func _on_sword_hit_area_entered(_area):
 	if parry_timer > 0:
 		return block_parry_state
 	

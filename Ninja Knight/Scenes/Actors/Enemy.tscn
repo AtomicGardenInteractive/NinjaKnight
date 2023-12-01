@@ -1,9 +1,13 @@
-[gd_scene load_steps=26 format=3 uid="uid://c3508dvtauchh"]
+[gd_scene load_steps=29 format=3 uid="uid://c3508dvtauchh"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Enemy.gd" id="1_0v5gb"]
 [ext_resource type="Texture2D" uid="uid://c5yf6dn32s2o7" path="res://Assets/Sprites/Enemies/Goblin/Attack_Goblin_Character.png" id="1_2lik6"]
 [ext_resource type="Texture2D" uid="uid://cbtmwmv7g5wca" path="res://Assets/Sprites/Enemies/Goblin/Idle_Goblin_Character.png" id="2_vn4we"]
 [ext_resource type="Texture2D" uid="uid://ub5ofhbjhqmy" path="res://Assets/Sprites/Enemies/Goblin/Walk_Goblin_Character.png" id="3_w5xn6"]
+[ext_resource type="Script" path="res://Scenes/Actors/Enemy State Machine.gd" id="5_ccv0j"]
+[ext_resource type="Script" path="res://Scenes/Actors/EnemyIdle.gd" id="6_gcuxy"]
+[ext_resource type="Script" path="res://Scenes/Actors/EnemySearch.gd" id="7_r7e5k"]
+[ext_resource type="Script" path="res://Scenes/Actors/Damageble.gd" id="8_525m2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fqxh"]
 atlas = ExtResource("1_2lik6")
@@ -141,13 +145,10 @@ size = Vector2(22, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrj3r"]
 size = Vector2(22, 21)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_erbwr"]
-size = Vector2(21, 21)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hksxr"]
-size = Vector2(19, 21)
+size = Vector2(40, 21)
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_0v5gb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -160,26 +161,39 @@ frame_progress = 1.0
 position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_fv08x")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-11, 0)
+target_position = Vector2(0, 20)
+
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="Damage received collision" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_wrj3r")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-11, 0)
-target_position = Vector2(0, 20)
-
-[node name="Attack Area" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Area"]
-position = Vector2(-11.5, 5.5)
-shape = SubResource("RectangleShape2D_erbwr")
-
 [node name="Attack Trigger Area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Trigger Area"]
-position = Vector2(-9.5, 5.5)
+position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_hksxr")
 
-[connection signal="area_entered" from="Attack Trigger Area" to="." method="_on_attack_trigger_area_area_entered"]
+[node name="Enemy State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_enemystate")]
+script = ExtResource("5_ccv0j")
+initial_enemystate = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="Enemy State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("6_gcuxy")
+enemy = NodePath("../..")
+
+[node name="EnemySearch" type="Node" parent="Enemy State Machine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("7_r7e5k")
+enemy = NodePath("../..")
+attack_range = 25.0
+
+[node name="Damageble" type="Node" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("8_525m2")
+health = 2
+parent = NodePath("..")
+
+[connection signal="body_entered" from="Attack Trigger Area" to="." method="_on_attack_trigger_area_body_entered"]

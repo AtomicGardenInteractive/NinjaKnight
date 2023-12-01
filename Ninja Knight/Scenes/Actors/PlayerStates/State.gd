@@ -27,5 +27,5 @@ func process_frame(_delta: float) -> State:
 func process_physics(_delta: float) -> State:
 	return null
 
-func player_hit(int):
+func player_hit():
 	return null
