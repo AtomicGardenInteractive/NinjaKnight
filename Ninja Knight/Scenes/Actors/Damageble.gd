@@ -10,4 +10,4 @@ func hit(damage : int):
 	health -= damage
 	if (health <= 0):
 		print("dead")
-		get_parent().queue_free()
+		#get_parent().queue_free()
