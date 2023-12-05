@@ -8,5 +8,4 @@ func _ready():
 		target_node  = get_node(TargetNodepath)
 		self.position = target_node.position
 func _physics_process(_delta):
- 
 	self.position = lerp(self.position, target_node.position, lerpspeed)

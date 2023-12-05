@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Ninja Knight"
 run/main_scene="res://Scenes/game_handler.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
