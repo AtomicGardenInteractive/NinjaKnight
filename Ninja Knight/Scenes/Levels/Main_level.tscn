@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://5tkq3dlkboyk" path="res://Assets/Sprites/Environment/Main_tile_set.tres" id="1_d7x52"]
 
-[node name="Level 3" type="Node2D"]
+[node name="Level" type="Node2D"]
 process_mode = 1
 
 [node name="TileMap" type="TileMap" parent="."]
