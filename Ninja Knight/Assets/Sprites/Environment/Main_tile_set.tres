@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://5tkq3dlkboyk"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://5tkq3dlkboyk"]
 
 [ext_resource type="Texture2D" uid="uid://b0618kr7y7855" path="res://Assets/Sprites/Environment/Finished_Environment_Tilesets.png" id="1_cxwoq"]
 
@@ -7,6 +7,54 @@ tile_data = PackedInt32Array(0, 65536, 2, 65536, 65536, 3, 1, 196608, 2, 65537, 
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_dctpi"]
 tile_data = PackedInt32Array(0, 458752, 1, 1, 524288, 1, 2, 589824, 1, 3, 655360, 1)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_qixv7"]
+tile_data = PackedInt32Array(0, 720896, 7, 65536, 720896, 8)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ommfv"]
+tile_data = PackedInt32Array(0, 524288, 5, 65536, 524288, 6, 131072, 524288, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_bamh0"]
+tile_data = PackedInt32Array(0, 524288, 5, 65536, 524288, 6, 131072, 524288, 6, 196608, 524288, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_pcjuq"]
+tile_data = PackedInt32Array(0, 524288, 5, 65536, 524288, 6, 131072, 524288, 6, 196608, 524288, 6, 262144, 524288, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_dnqoy"]
+tile_data = PackedInt32Array(0, 851968, 3, 65536, 851968, 3, 131072, 851968, 3, 196608, 851968, 3, 262144, 851968, 3, 327680, 917504, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_b7ruu"]
+tile_data = PackedInt32Array(0, 851968, 3, 65536, 851968, 3, 131072, 851968, 3, 196608, 917504, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_51g1q"]
+tile_data = PackedInt32Array(0, 851968, 3, 65536, 917504, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_a7vj2"]
+tile_data = PackedInt32Array(0, 917504, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_biyxl"]
+tile_data = PackedInt32Array(0, 458752, 5, 65536, 458752, 6, 131072, 458752, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_7q607"]
+tile_data = PackedInt32Array(0, 458752, 5, 65536, 458752, 6, 131072, 458752, 6, 196608, 458752, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_4ocqo"]
+tile_data = PackedInt32Array(0, 458752, 5, 65536, 458752, 6, 131072, 458752, 6, 196608, 458752, 6, 262144, 458752, 7)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_cx5dj"]
+tile_data = PackedInt32Array(0, 327680, 13, 65536, 327680, 14, 131072, 327680, 15)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_xlmtn"]
+tile_data = PackedInt32Array(0, 524288, 13, 65536, 524288, 14, 131072, 524288, 15)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_f6q23"]
+tile_data = PackedInt32Array(0, 524288, 9, 65536, 524288, 10, 131072, 524288, 11, 1, 589824, 9, 65537, 589824, 10, 131073, 589824, 11)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_fcntt"]
+tile_data = PackedInt32Array(0, 327680, 9, 65536, 327680, 10, 131072, 327680, 11, 1, 393216, 9, 65537, 393216, 10, 131073, 393216, 11)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_0deyd"]
+tile_data = PackedInt32Array(0, 65536, 12, 65536, 65536, 13, 131072, 65536, 14, 196608, 65536, 15, 1, 131072, 12, 65537, 131072, 13, 131073, 131072, 14, 196609, 131072, 15, 2, 196608, 12, 65538, 196608, 13, 131074, 196608, 14, 196610, 196608, 15)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m638j"]
 texture = ExtResource("1_cxwoq")
@@ -198,7 +246,6 @@ texture = ExtResource("1_cxwoq")
 2:6/0 = 0
 2:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:6/0/physics_layer_0/angular_velocity = 0.0
-2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:6/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 2:6/0/physics_layer_1/angular_velocity = 0.0
 3:6/0 = 0
@@ -453,3 +500,19 @@ physics_layer_1/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_m638j")
 pattern_0 = SubResource("TileMapPattern_5oyqo")
 pattern_1 = SubResource("TileMapPattern_dctpi")
+pattern_2 = SubResource("TileMapPattern_biyxl")
+pattern_3 = SubResource("TileMapPattern_7q607")
+pattern_4 = SubResource("TileMapPattern_4ocqo")
+pattern_5 = SubResource("TileMapPattern_cx5dj")
+pattern_6 = SubResource("TileMapPattern_xlmtn")
+pattern_7 = SubResource("TileMapPattern_f6q23")
+pattern_8 = SubResource("TileMapPattern_fcntt")
+pattern_9 = SubResource("TileMapPattern_0deyd")
+pattern_10 = SubResource("TileMapPattern_qixv7")
+pattern_11 = SubResource("TileMapPattern_ommfv")
+pattern_12 = SubResource("TileMapPattern_bamh0")
+pattern_13 = SubResource("TileMapPattern_pcjuq")
+pattern_14 = SubResource("TileMapPattern_dnqoy")
+pattern_15 = SubResource("TileMapPattern_b7ruu")
+pattern_16 = SubResource("TileMapPattern_51g1q")
+pattern_17 = SubResource("TileMapPattern_a7vj2")
