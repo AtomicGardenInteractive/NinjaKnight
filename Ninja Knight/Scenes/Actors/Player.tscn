@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ct1dtslkycmrk"]
+[gd_scene load_steps=21 format=3 uid="uid://ct1dtslkycmrk"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player.gd" id="1_fvvli"]
 [ext_resource type="SpriteFrames" uid="uid://btoqcq38ikcrd" path="res://Assets/Sprites/Animations/Player_SpriteFrames.tres" id="1_infe4"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/dodge.gd" id="11_klgwn"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/block.gd" id="12_sjtrb"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/block_parry.gd" id="13_4murt"]
+[ext_resource type="AudioStream" uid="uid://4qqpb1aiatr2" path="res://Assets/Sounds/SFX/SFX_SwordShimmer.wav" id="13_x14mg"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/damaged.gd" id="14_2eh0g"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/death_ground.gd" id="15_ahps7"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/death_air.gd" id="16_57t3i"]
@@ -144,6 +145,7 @@ script = ExtResource("12_sjtrb")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 block_parry_state = NodePath("../block_parry")
+Parry_ready_FX = ExtResource("13_x14mg")
 animation_name = "Block"
 
 [node name="block_parry" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
