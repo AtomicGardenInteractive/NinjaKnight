@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://blu44oac3paba"]
+
+[ext_resource type="Texture2D" uid="uid://cabddyfahhk8t" path="res://Assets/Sprites/HUD/Boss Bar/Finished_Boss_Health_Bar.png" id="1_volf8"]
+
+[resource]
+atlas = ExtResource("1_volf8")
+region = Rect2(9, 53, 106, 5)

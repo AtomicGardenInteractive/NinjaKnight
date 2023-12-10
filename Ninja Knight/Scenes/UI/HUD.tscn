@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsapfeuac5qdt"]
+
+[ext_resource type="Texture2D" uid="uid://cy2a2sjit28pw" path="res://Assets/Sprites/HUD/Boss Bar/UNDER.tres" id="1_84lsk"]
+[ext_resource type="Texture2D" uid="uid://ry4s0q5fs2n4" path="res://Assets/Sprites/HUD/Boss Bar/OVER.tres" id="2_3nitn"]
+[ext_resource type="Texture2D" uid="uid://blu44oac3paba" path="res://Assets/Sprites/HUD/Boss Bar/PROGRESSS.tres" id="3_0ne15"]
+[ext_resource type="Texture2D" uid="uid://d043ykmupkygj" path="res://Assets/Sprites/HUD/Player/PlayerUnder.tres" id="4_va8ol"]
+[ext_resource type="Texture2D" uid="uid://boxjm478o7oqh" path="res://Assets/Sprites/HUD/Player/PlayerOver.tres" id="5_srsuh"]
+[ext_resource type="Texture2D" uid="uid://cfpay2ckktvjm" path="res://Assets/Sprites/HUD/Player/PlayerProgress.tres" id="6_y86ul"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Boss Bar" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 113.0
+offset_bottom = 21.0
+max_value = 10.0
+value = 10.0
+texture_under = ExtResource("1_84lsk")
+texture_over = ExtResource("2_3nitn")
+texture_progress = ExtResource("3_0ne15")
+texture_progress_offset = Vector2(4, 3)
+
+[node name="Player Bar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 134.0
+offset_bottom = 38.0
+max_value = 7.0
+value = 7.0
+texture_under = ExtResource("4_va8ol")
+texture_over = ExtResource("5_srsuh")
+texture_progress = ExtResource("6_y86ul")
+texture_progress_offset = Vector2(24, 1)

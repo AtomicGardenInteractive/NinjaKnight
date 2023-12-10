@@ -1,11 +1,14 @@
 extends CharacterBody2D
 class_name Enemy 
 
+@export var Type : Enemy_Type
 @export var enemy_health_max : int = 2
 @export var enemy_damage : int = 1
 @export var is_attacking_time: = 1.0
 
+
 var player: CharacterBody2D
+enum Enemy_Type {Goblin, Seleton_Mage, Jailer}
 var enemy_health_current: int = 100
 var is_attacking_timer: = 0.0
 
@@ -14,18 +17,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
 	enemy_health_current = enemy_health_max
-#var speed = -30
-#var facing_right = false
-#var attack_time = 0.3
-#var attack_timer = -0.1
-#
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 
-#
-#func _ready():
-#	$AnimatedSprite2D.play("Walk")
-#
-#
 func _physics_process(delta):
 	move_and_slide()
 	is_attacking_timer -=delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=12 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerCamera.gd" id="3_sy4fd"]
 [ext_resource type="PackedScene" uid="uid://b3s7dh0xb3ryu" path="res://Scenes/Actors/Goblin.tscn" id="4_fq81e"]
 [ext_resource type="PackedScene" uid="uid://desouleebohxu" path="res://Scenes/Levels/Main_level.tscn" id="4_s1yen"]
+[ext_resource type="PackedScene" uid="uid://dsapfeuac5qdt" path="res://Scenes/UI/HUD.tscn" id="6_h26sa"]
 [ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
 [ext_resource type="PackedScene" uid="uid://8igs4n8mmgrb" path="res://Scenes/UI/load_menu.tscn" id="9_wcbe2"]
 [ext_resource type="PackedScene" uid="uid://c5cx5ggxreyla" path="res://Scenes/Actors/Skeleton Mage.tscn" id="10_04bgk"]
@@ -30,6 +31,10 @@ position = Vector2(475, 22)
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
 process_mode = 1
 visible = false
+
+[node name="UI_Layer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UI_Layer" instance=ExtResource("6_h26sa")]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_sy4fd")
