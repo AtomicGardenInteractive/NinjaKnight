@@ -25,15 +25,23 @@ size = Vector2(64, 33.5)
 size = Vector2(16, 30)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 5
 script = ExtResource("1_fvvli")
 
 [node name="animations" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = ExtResource("1_infe4")
-animation = &"Jump"
-frame = 5
-frame_progress = 1.0
+animation = &"Death_Ground"
 metadata/_edit_lock_ = true
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"source": ""
+}
 
 [node name="SwordHit" type="Area2D" parent="animations"]
 metadata/_edit_lock_ = true
@@ -41,6 +49,7 @@ metadata/_edit_lock_ = true
 [node name="Attack Area" type="CollisionShape2D" parent="animations/SwordHit"]
 position = Vector2(0, -0.75)
 shape = SubResource("RectangleShape2D_fc428")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -51,7 +60,7 @@ metadata/_edit_lock_ = true
 script = ExtResource("3_mde7v")
 starting_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "attack_State", "dodge_state", "block_state")]
+[node name="idle" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "jump_state", "move_state", "attack_State", "dodge_state", "block_state", "damaged_state", "death_state")]
 script = ExtResource("4_33pue")
 fall_state = NodePath("../fall")
 jump_state = NodePath("../jump")
@@ -59,9 +68,11 @@ move_state = NodePath("../move")
 attack_State = NodePath("../attack")
 dodge_state = NodePath("../dodge")
 block_state = NodePath("../block")
+damaged_state = NodePath("../damaged")
+death_state = NodePath("../death_ground")
 animation_name = "Idle"
 
-[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "attack_state", "dodge_state", "block_state")]
+[node name="move" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "jump_state", "attack_state", "dodge_state", "block_state", "damaged_state", "death_state")]
 script = ExtResource("5_dy7wr")
 fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
@@ -69,6 +80,8 @@ jump_state = NodePath("../jump")
 attack_state = NodePath("../attack")
 dodge_state = NodePath("../dodge")
 block_state = NodePath("../block")
+damaged_state = NodePath("../damaged")
+death_state = NodePath("../death_ground")
 animation_name = "Move"
 
 [node name="fall" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "move_state", "jump_state", "attack_state", "double_jump_state", "dodge_state")]
@@ -139,12 +152,14 @@ idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 animation_name = "Block_Parry"
 
-[node name="damaged" type="Node" parent="state_machine"]
+[node name="damaged" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("14_2eh0g")
+idle_state = NodePath("../idle")
 animation_name = "Damaged"
 
-[node name="death_ground" type="Node" parent="state_machine"]
+[node name="death_ground" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("15_ahps7")
+idle_state = NodePath("../idle")
 animation_name = "Death_Ground"
 
 [node name="death_air" type="Node" parent="state_machine"]

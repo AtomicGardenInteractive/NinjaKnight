@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=94 format=3 uid="uid://btoqcq38ikcrd"]
+[gd_resource type="SpriteFrames" load_steps=95 format=3 uid="uid://btoqcq38ikcrd"]
 
 [ext_resource type="Texture2D" uid="uid://d0ooohg5rvwrn" path="res://Assets/Sprites/Player/Attack1_Main_Character_Anim.png" id="1_v5jfd"]
 [ext_resource type="Texture2D" uid="uid://d3hi4qc2k834o" path="res://Assets/Sprites/Player/Attack2_Main_Character_Anim.png" id="2_svilo"]
@@ -215,6 +215,10 @@ region = Rect2(64, 128, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhvcd"]
 atlas = ExtResource("7_5pbqn")
 region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i86pk"]
+atlas = ExtResource("2_svilo")
+region = Rect2(64, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ts06q"]
 atlas = ExtResource("10_8qwp4")
@@ -525,8 +529,11 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qhvcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i86pk")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death_Ground",
 "speed": 12.0
 }, {

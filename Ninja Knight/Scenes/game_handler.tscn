@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=13 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerCamera.gd" id="3_sy4fd"]
 [ext_resource type="PackedScene" uid="uid://b3s7dh0xb3ryu" path="res://Scenes/Actors/Goblin.tscn" id="4_fq81e"]
 [ext_resource type="PackedScene" uid="uid://desouleebohxu" path="res://Scenes/Levels/Main_level.tscn" id="4_s1yen"]
+[ext_resource type="Texture2D" uid="uid://f873dodccp2l" path="res://Assets/Sprites/Finished_Knight_Character.png" id="5_j6s4h"]
 [ext_resource type="PackedScene" uid="uid://dsapfeuac5qdt" path="res://Scenes/UI/HUD.tscn" id="6_h26sa"]
 [ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
 [ext_resource type="PackedScene" uid="uid://8igs4n8mmgrb" path="res://Scenes/UI/load_menu.tscn" id="9_wcbe2"]
@@ -25,8 +26,39 @@ options_menu = NodePath("Options_Menu_Layer/Options_Menu")
 
 [node name="Player" parent="Level_Loader/Level" instance=ExtResource("2_dd0a3")]
 
-[node name="Enemy" parent="Level_Loader/Level" instance=ExtResource("4_fq81e")]
-position = Vector2(475, 22)
+[node name="Enemy Holder" type="Node" parent="Level_Loader/Level"]
+
+[node name="Enemy" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("4_fq81e")]
+position = Vector2(255, 28)
+
+[node name="Enemy2" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("10_04bgk")]
+position = Vector2(366, -756)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level_Loader/Level/Enemy Holder"]
+position = Vector2(-274, -769)
+texture = ExtResource("5_j6s4h")
+flip_h = true
+
+[node name="Goblin" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("4_fq81e")]
+position = Vector2(357, 29)
+
+[node name="Goblin2" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("4_fq81e")]
+position = Vector2(911, 29)
+
+[node name="Goblin3" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("4_fq81e")]
+position = Vector2(1262, 30)
+
+[node name="Skeleton Mage" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("10_04bgk")]
+position = Vector2(1325, 29)
+
+[node name="Skeleton Mage2" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("10_04bgk")]
+position = Vector2(1521, -756)
+
+[node name="Goblin4" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("4_fq81e")]
+position = Vector2(1621, -759)
+
+[node name="Goblin5" parent="Level_Loader/Level/Enemy Holder" instance=ExtResource("4_fq81e")]
+position = Vector2(1400, -758)
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
 process_mode = 1
@@ -37,10 +69,17 @@ visible = false
 [node name="HUD" parent="UI_Layer" instance=ExtResource("6_h26sa")]
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
+limit_left = -850
+limit_top = -1200
+limit_right = 2200
+limit_bottom = 175
+limit_smoothed = true
+editor_draw_limits = true
 script = ExtResource("3_sy4fd")
 TargetNodepath = NodePath("../Level_Loader/Level/Player")
 
 [node name="Pause_Menu_Layer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Pause_Menu" parent="Pause_Menu_Layer" node_paths=PackedStringArray("game_handler", "options_menu", "load_menu") instance=ExtResource("8_edo4n")]
 game_handler = NodePath("../..")
@@ -48,14 +87,13 @@ options_menu = NodePath("../../Load_Menu_Layer")
 load_menu = NodePath("../../Options_Menu_Layer")
 
 [node name="Load_Menu_Layer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Load_Menu" parent="Load_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("9_wcbe2")]
 game_handler = NodePath("../..")
 
 [node name="Options_Menu_Layer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Options_Menu" parent="Options_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("10_5prgp")]
 game_handler = NodePath("../..")
-
-[node name="Enemy" parent="." instance=ExtResource("10_04bgk")]
-position = Vector2(526, 22)

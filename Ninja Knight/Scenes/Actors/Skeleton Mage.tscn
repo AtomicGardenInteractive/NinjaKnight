@@ -151,7 +151,7 @@ frame = 0
 frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="Attack Trigger Area" index="0"]
-position = Vector2(-3, 5.5)
+position = Vector2(-3.5, 5.5)
 
 [node name="EnemySearch" parent="Enemy State Machine" index="1"]
 attack_range = 150.0
