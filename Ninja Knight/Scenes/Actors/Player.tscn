@@ -102,7 +102,7 @@ idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 double_jump_state = NodePath("../double_Jump")
 dodge_state = NodePath("../dodge")
-jump_force = 300.0
+jump_force = 325.0
 animation_name = "Jump"
 
 [node name="double_Jump" type="Node" parent="state_machine" node_paths=PackedStringArray("fall_state", "idle_state", "move_state", "dodge_state")]
@@ -111,7 +111,7 @@ fall_state = NodePath("../fall")
 idle_state = NodePath("../idle")
 move_state = NodePath("../move")
 dodge_state = NodePath("../dodge")
-jump_force = 300.0
+jump_force = 325.0
 animation_name = "Double_Jump"
 
 [node name="attack" type="Node" parent="state_machine" node_paths=PackedStringArray("move_state", "fall_state", "idle_state", "attack_combo_state")]
@@ -157,6 +157,7 @@ animation_name = "Block_Parry"
 [node name="damaged" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("14_2eh0g")
 idle_state = NodePath("../idle")
+launch_force_up = Vector2(0, -300)
 animation_name = "Damaged"
 
 [node name="death_ground" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state")]
