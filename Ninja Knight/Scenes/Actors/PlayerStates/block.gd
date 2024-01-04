@@ -11,13 +11,14 @@ var block_parry_state: State
 @export var parry_time = 0.1
 
 @export_group("SFX")
-@export var Parry_ready_FX : AudioStreamWAV
+@export var Block_FX : AudioStreamPlayer
 
 var parry_timer = 0.0
 
 func enter() -> void:
 	super()
 	parry_timer = parry_time
+	Block_FX.play()
 	return
 
 func process_input(_event: InputEvent) -> State:

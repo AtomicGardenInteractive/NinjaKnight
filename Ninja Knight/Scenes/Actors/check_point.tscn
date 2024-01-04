@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwkle3gsaoakb"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/CheckPoint.gd" id="1_ms1wi"]
+[ext_resource type="Texture2D" uid="uid://brlqbqstjx1rg" path="res://Assets/Sprites/Finished_Fire_Braizer.png" id="2_1ca4s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6kt"]
+size = Vector2(29, 79)
+
+[node name="CheckPoint" type="StaticBody2D"]
+script = ExtResource("1_ms1wi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1ca4s")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.5, -31.5)
+shape = SubResource("RectangleShape2D_7p6kt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

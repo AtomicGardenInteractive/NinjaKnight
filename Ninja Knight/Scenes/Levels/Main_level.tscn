@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://desouleebohxu"]
 
 [ext_resource type="TileSet" uid="uid://5tkq3dlkboyk" path="res://Assets/Sprites/Environment/Main_tile_set.tres" id="1_d7x52"]
-[ext_resource type="PackedScene" uid="uid://bqap3vlbcnja3" path="res://DropPlatform.tscn" id="2_ylrce"]
+[ext_resource type="PackedScene" uid="uid://bqap3vlbcnja3" path="res://Assets/DropPlatform.tscn" id="2_ylrce"]
 
 [node name="Level" type="Node2D"]
 process_mode = 1

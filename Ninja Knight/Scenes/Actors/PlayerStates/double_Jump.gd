@@ -15,6 +15,9 @@ var dodge_state: State
 @export
 var jump_force: float = 400.0
 
+@export_group("SFX")
+@export var Double_Jump_FX : AudioStreamPlayer
+
 func enter() -> void:
 	super()
 	parent.set_collision_mask(2)

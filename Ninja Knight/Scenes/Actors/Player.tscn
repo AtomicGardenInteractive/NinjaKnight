@@ -140,12 +140,12 @@ jump_state = NodePath("../jump")
 attack_state = NodePath("../attack")
 animation_name = "Dodge"
 
-[node name="block" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "block_parry_state")]
+[node name="block" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "fall_state", "block_parry_state", "Block_FX")]
 script = ExtResource("12_sjtrb")
 idle_state = NodePath("../idle")
 fall_state = NodePath("../fall")
 block_parry_state = NodePath("../block_parry")
-Parry_ready_FX = ExtResource("13_x14mg")
+Block_FX = NodePath("../../Audio/Block")
 animation_name = "Block"
 
 [node name="block_parry" type="Node" parent="state_machine" node_paths=PackedStringArray("idle_state", "fall_state")]
@@ -171,6 +171,28 @@ animation_name = "Death_Air"
 
 [node name="Damageble" type="Node" parent="."]
 script = ExtResource("17_ltacr")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -20.0
+bus = &"Effects"
+
+[node name="Dodge" type="AudioStreamPlayer" parent="Audio"]
+bus = &"Effects"
+
+[node name="Death" type="AudioStreamPlayer" parent="Audio"]
+bus = &"Effects"
+
+[node name="Attack" type="AudioStreamPlayer" parent="Audio"]
+bus = &"Effects"
+
+[node name="Block" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_x14mg")
+bus = &"Effects"
+
+[node name="jump" type="AudioStreamPlayer" parent="Audio"]
+bus = &"Effects"
 
 [connection signal="body_entered" from="animations/SwordHit" to="state_machine/attack" method="_on_sword_hit_body_entered"]
 [connection signal="body_entered" from="animations/SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_body_entered"]

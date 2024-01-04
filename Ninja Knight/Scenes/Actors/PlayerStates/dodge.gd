@@ -12,6 +12,9 @@ var jump_state: State
 @export
 var attack_state: State
 
+@export_group("SFX")
+@export var Dodge_FX : AudioStreamPlayer
+
 @export_group ("Other")
 @export var dodge_force: float = 500.0
 @export var jump_buffer_time = 0.3

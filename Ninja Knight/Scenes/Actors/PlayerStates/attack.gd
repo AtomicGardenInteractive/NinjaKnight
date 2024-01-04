@@ -15,6 +15,9 @@ var attack_combo_state: State
 var attack_time = 0.35
 var damage = 1
 
+@export_group("SFX")
+@export var Attack_FX : AudioStreamPlayer
+
 #combo trigger
 var combo_ready = false
 #timers

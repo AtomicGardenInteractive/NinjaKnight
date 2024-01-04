@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=12 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
 [ext_resource type="PackedScene" uid="uid://8igs4n8mmgrb" path="res://Scenes/UI/load_menu.tscn" id="9_wcbe2"]
 [ext_resource type="PackedScene" uid="uid://bfykqvlhputuv" path="res://Scenes/UI/options_menu.tscn" id="10_5prgp"]
+[ext_resource type="AudioStream" uid="uid://cl8oqctxu0toa" path="res://Assets/Sounds/Music/level_song.mp3" id="10_gcuc6"]
+[ext_resource type="PackedScene" uid="uid://dwkle3gsaoakb" path="res://Scenes/Actors/check_point.tscn" id="11_c76yv"]
 
 [node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu")]
 process_mode = 3
@@ -22,6 +24,11 @@ options_menu = NodePath("Options_Menu_Layer/Options_Menu")
 [node name="Level" parent="Level_Loader" instance=ExtResource("4_s1yen")]
 
 [node name="Player" parent="Level_Loader/Level" instance=ExtResource("2_dd0a3")]
+
+[node name="CheckPoint" parent="Level_Loader/Level" instance=ExtResource("11_c76yv")]
+position = Vector2(-110.229, 40)
+scale = Vector2(1.00209, 1)
+checkpoint_no = 1
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
 process_mode = 1
@@ -57,3 +64,10 @@ game_handler = NodePath("../..")
 
 [node name="Options_Menu" parent="Options_Menu_Layer" node_paths=PackedStringArray("game_handler") instance=ExtResource("10_5prgp")]
 game_handler = NodePath("../..")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Background music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_gcuc6")
+volume_db = -20.0
+bus = &"Music"

@@ -13,6 +13,9 @@ var idle_state: State
 var attack_time = 0.3
 var damage = 1
 
+@export_group("SFX")
+@export var Attack_FX : AudioStreamPlayer
+
 var attack_timer = 0.0
 
 func enter() -> void:

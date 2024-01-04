@@ -10,6 +10,9 @@ var launch_force_up: Vector2 = Vector2(0,-200)
 @export
 var launch_force_sideways: Vector2 = Vector2(200,0)
 
+@export_group("SFX")
+@export var Damage_FX : AudioStreamPlayer
+
 func enter() -> void:
 	super()
 	if parent.animations.flip_h == true:
