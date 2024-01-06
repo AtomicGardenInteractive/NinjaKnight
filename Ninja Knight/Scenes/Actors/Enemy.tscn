@@ -1,9 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://c3508dvtauchh"]
+[gd_scene load_steps=39 format=3 uid="uid://c3508dvtauchh"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Enemy.gd" id="1_0v5gb"]
 [ext_resource type="Texture2D" uid="uid://c5yf6dn32s2o7" path="res://Assets/Sprites/Enemies/Goblin/Attack_Goblin_Character.png" id="1_2lik6"]
 [ext_resource type="Texture2D" uid="uid://cbtmwmv7g5wca" path="res://Assets/Sprites/Enemies/Goblin/Idle_Goblin_Character.png" id="2_vn4we"]
+[ext_resource type="Texture2D" uid="uid://1kppcnfmuxjv" path="res://Assets/Sprites/Enemies/Goblin/Goblin_death.png" id="3_fjo4y"]
 [ext_resource type="Texture2D" uid="uid://ub5ofhbjhqmy" path="res://Assets/Sprites/Enemies/Goblin/Walk_Goblin_Character.png" id="3_w5xn6"]
+[ext_resource type="Texture2D" uid="uid://c6d0e7bd04yca" path="res://Assets/Sprites/Enemies/Goblin/Goblin_hit.png" id="4_v85qo"]
 [ext_resource type="Script" path="res://Scenes/Actors/Enemy State Machine.gd" id="5_ccv0j"]
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyStates/EnemyIdle.gd" id="6_64p5c"]
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyStates/EnemySearch.gd" id="7_vp65v"]
@@ -44,6 +46,38 @@ region = Rect2(64, 128, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3c7u7"]
 atlas = ExtResource("1_2lik6")
 region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qliv"]
+atlas = ExtResource("3_fjo4y")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jjim"]
+atlas = ExtResource("3_fjo4y")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm5ua"]
+atlas = ExtResource("3_fjo4y")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acgje"]
+atlas = ExtResource("3_fjo4y")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lls4w"]
+atlas = ExtResource("3_fjo4y")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee2q5"]
+atlas = ExtResource("3_fjo4y")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb75m"]
+atlas = ExtResource("4_v85qo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlfks"]
+atlas = ExtResource("4_v85qo")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vm3d"]
 atlas = ExtResource("2_vn4we")
@@ -109,6 +143,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_6qliv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jjim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hm5ua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acgje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lls4w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee2q5")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb75m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlfks")
+}],
+"loop": true,
+"name": &"Hit",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_4vm3d")
 }],
 "loop": true,
@@ -154,8 +222,6 @@ script = ExtResource("1_0v5gb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_edf77")
 animation = &"Attack"
-frame = 8
-frame_progress = 1.0
 
 [node name="Body Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 5.5)
@@ -167,6 +233,7 @@ target_position = Vector2(0, 20)
 
 [node name="Hitbox" type="Area2D" parent="."]
 visible = false
+monitoring = false
 
 [node name="Damage received collision" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-1, 5.5)

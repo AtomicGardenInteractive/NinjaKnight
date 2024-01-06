@@ -8,7 +8,7 @@ class_name Enemy
 
 
 var player: CharacterBody2D
-enum Enemy_Type {Goblin, Seleton_Mage, Jailer}
+enum Enemy_Type {Goblin, Skeleton_Mage, Jailer}
 var enemy_health_current: int = 100
 var is_attacking_timer: = 0.0
 
@@ -74,5 +74,14 @@ func _on_attack_trigger_area_body_entered(body):
 	for child in body.get_children():
 		if child is Damageable:
 			child.hit(enemy_damage)
+			match Type:
+				Enemy_Type.Goblin:
+					pass
+				Enemy_Type.Skeleton_Mage:
+					pass
+				Enemy_Type.Jailer:
+					pass
+				_:
+					pass
 			is_attacking_timer = is_attacking_time
 			$AnimatedSprite2D.play("Attack")

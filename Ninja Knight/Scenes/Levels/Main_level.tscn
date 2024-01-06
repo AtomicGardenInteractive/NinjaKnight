@@ -21,97 +21,100 @@ layer_3/name = "Foreground"
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 
-[node name="StaticBody2D2" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="onewayPlatforms" type="Node2D" parent="TileMap"]
+
+[node name="StaticBody2D2" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(304, -75)
 scale = Vector2(3.2, 0.5)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(184, -25)
 scale = Vector2(0.84, 0.719999)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D3" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D3" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(504, -138)
 scale = Vector2(10.4, 0.600002)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D4" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D4" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(760, -170)
 scale = Vector2(4, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D5" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D5" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(992.065, 6)
 scale = Vector2(3.20455, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D6" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D6" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1200, -74)
 scale = Vector2(3.2, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D7" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D7" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(512.066, 54)
-scale = Vector2(-6.41251, 0.607305)
+rotation = 3.14159
+scale = Vector2(6.41251, -0.607305)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D8" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D8" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1424, -106)
 scale = Vector2(3.20042, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D9" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D9" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1536, -170)
 scale = Vector2(3.2, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D10" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D10" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1632, -250)
 scale = Vector2(3.2, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D11" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D11" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1904, -362)
 scale = Vector2(3.2, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D12" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D12" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1984, -409.595)
 scale = Vector2(1.6, 0.64)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D13" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D13" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(2080.33, -458)
 scale = Vector2(3.2421, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D14" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D14" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1903.96, -586)
 scale = Vector2(3.2, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D15" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D15" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(2000, -634)
 scale = Vector2(1.60125, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D16" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D16" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(2088, -698)
 scale = Vector2(2.4, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D17" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D17" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1896, -730)
 scale = Vector2(2.4, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D18" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D18" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(1544, -810)
 scale = Vector2(7.2, 0.6)
 metadata/_edit_lock_ = true
 
-[node name="StaticBody2D19" parent="TileMap" instance=ExtResource("2_ylrce")]
+[node name="StaticBody2D19" parent="TileMap/onewayPlatforms" instance=ExtResource("2_ylrce")]
 position = Vector2(816, -794)
 scale = Vector2(6.4, 0.6)
 metadata/_edit_lock_ = true

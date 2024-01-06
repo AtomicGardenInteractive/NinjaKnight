@@ -1,16 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=16 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
 [ext_resource type="PackedScene" uid="uid://ct1dtslkycmrk" path="res://Scenes/Actors/Player.tscn" id="2_dd0a3"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerCamera.gd" id="3_sy4fd"]
 [ext_resource type="PackedScene" uid="uid://desouleebohxu" path="res://Scenes/Levels/Main_level.tscn" id="4_s1yen"]
+[ext_resource type="PackedScene" uid="uid://cnaw6mht185jk" path="res://Scenes/Actors/spikes.tscn" id="5_h5snc"]
 [ext_resource type="PackedScene" uid="uid://dsapfeuac5qdt" path="res://Scenes/UI/HUD.tscn" id="6_h26sa"]
 [ext_resource type="PackedScene" uid="uid://bi8vdt6ox1guj" path="res://Scenes/UI/pause_menu.tscn" id="8_edo4n"]
 [ext_resource type="PackedScene" uid="uid://8igs4n8mmgrb" path="res://Scenes/UI/load_menu.tscn" id="9_wcbe2"]
 [ext_resource type="PackedScene" uid="uid://bfykqvlhputuv" path="res://Scenes/UI/options_menu.tscn" id="10_5prgp"]
 [ext_resource type="AudioStream" uid="uid://cl8oqctxu0toa" path="res://Assets/Sounds/Music/level_song.mp3" id="10_gcuc6"]
 [ext_resource type="PackedScene" uid="uid://dwkle3gsaoakb" path="res://Scenes/Actors/check_point.tscn" id="11_c76yv"]
+[ext_resource type="PackedScene" uid="uid://c5cx5ggxreyla" path="res://Scenes/Actors/Skeleton Mage.tscn" id="13_pynib"]
+[ext_resource type="PackedScene" uid="uid://b3s7dh0xb3ryu" path="res://Scenes/Actors/Goblin.tscn" id="14_d0mqy"]
+[ext_resource type="PackedScene" uid="uid://7grb5n6w36e7" path="res://Scenes/Actors/Jailer.tscn" id="15_rr454"]
 
 [node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu")]
 process_mode = 3
@@ -23,12 +27,49 @@ options_menu = NodePath("Options_Menu_Layer/Options_Menu")
 
 [node name="Level" parent="Level_Loader" instance=ExtResource("4_s1yen")]
 
-[node name="Player" parent="Level_Loader/Level" instance=ExtResource("2_dd0a3")]
+[node name="Player" parent="Level_Loader/Level" node_paths=PackedStringArray("start_checkpoint") instance=ExtResource("2_dd0a3")]
+start_checkpoint = NodePath("../CheckpointsHolder/CheckPoint5")
 
-[node name="CheckPoint" parent="Level_Loader/Level" instance=ExtResource("11_c76yv")]
-position = Vector2(-110.229, 40)
+[node name="CheckpointsHolder" type="Node2D" parent="Level_Loader/Level"]
 scale = Vector2(1.00209, 1)
+
+[node name="CheckPoint" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
+position = Vector2(-52.1085, 40)
+scale = Vector2(1, 1)
+
+[node name="CheckPoint3" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
+position = Vector2(1811.77, -296)
+scale = Vector2(1, 1)
 checkpoint_no = 1
+
+[node name="CheckPoint4" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
+position = Vector2(1237.58, -872)
+scale = Vector2(1, 1)
+checkpoint_no = 2
+
+[node name="CheckPoint5" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
+position = Vector2(106.221, -744)
+scale = Vector2(1, 1)
+checkpoint_no = 3
+
+[node name="SpikesHolder" type="Node2D" parent="Level_Loader/Level"]
+scale = Vector2(0.928287, 0.631692)
+
+[node name="Spikes" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(551.625, 117.146)
+scale = Vector2(6.90656, 0.949826)
+
+[node name="Spikes2" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1637.6, 123.478)
+scale = Vector2(13.6858, 1.58305)
+
+[node name="Spikes3" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2154.68, -432.173)
+scale = Vector2(10.4473, 1.58305)
+
+[node name="Spikes4" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(982.346, -1066.98)
+scale = Vector2(17.3561, 1.58305)
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
 process_mode = 1
@@ -71,3 +112,12 @@ game_handler = NodePath("../..")
 stream = ExtResource("10_gcuc6")
 volume_db = -20.0
 bus = &"Music"
+
+[node name="Skeleton Mage" parent="." instance=ExtResource("13_pynib")]
+position = Vector2(690, 31)
+
+[node name="Goblin" parent="." instance=ExtResource("14_d0mqy")]
+position = Vector2(315, 31)
+
+[node name="Enemy" parent="." instance=ExtResource("15_rr454")]
+position = Vector2(-284, -754)

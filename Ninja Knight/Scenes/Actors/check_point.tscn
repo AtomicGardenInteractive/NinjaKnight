@@ -13,6 +13,7 @@ script = ExtResource("1_ms1wi")
 texture = ExtResource("2_1ca4s")
 
 [node name="Area2D" type="Area2D" parent="."]
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2.5, -31.5)

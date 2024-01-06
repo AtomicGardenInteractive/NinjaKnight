@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnaw6mht185jk"]
+
+[ext_resource type="Script" path="res://Spikes.gd" id="1_bneui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue2jb"]
+
+[node name="Spikes" type="Node2D"]
+script = ExtResource("1_bneui")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ue2jb")

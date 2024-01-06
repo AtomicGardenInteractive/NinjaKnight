@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5cx5ggxreyla"]
+[gd_scene load_steps=30 format=3 uid="uid://c5cx5ggxreyla"]
 
 [ext_resource type="PackedScene" uid="uid://c3508dvtauchh" path="res://Scenes/Actors/Enemy.tscn" id="1_mr2u6"]
 [ext_resource type="Texture2D" uid="uid://d10m3gteq7atg" path="res://Assets/Sprites/Enemies/Skeleton Mage/Attack_Skeleton_Mage.png" id="2_6cynm"]
+[ext_resource type="Texture2D" uid="uid://dhsvx4cx1a7i2" path="res://Assets/Sprites/Enemies/Skeleton Mage/skeleton_death.png" id="3_sjeiv"]
 [ext_resource type="Texture2D" uid="uid://dlxiyv1lg5ot7" path="res://Assets/Sprites/Enemies/Skeleton Mage/Idle_Skeleton_Mage.png" id="3_w2dy2"]
 [ext_resource type="Texture2D" uid="uid://4ch6sdu765bs" path="res://Assets/Sprites/Enemies/Skeleton Mage/Walk_Skeleton_Mage.png" id="4_psh8b"]
 
@@ -56,6 +57,30 @@ region = Rect2(384, 128, 128, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2e3h"]
 atlas = ExtResource("2_6cynm")
 region = Rect2(0, 192, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or2ve"]
+atlas = ExtResource("3_sjeiv")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqomu"]
+atlas = ExtResource("3_sjeiv")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1puv"]
+atlas = ExtResource("3_sjeiv")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmwf1"]
+atlas = ExtResource("3_sjeiv")
+region = Rect2(0, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tydhj"]
+atlas = ExtResource("3_sjeiv")
+region = Rect2(128, 64, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds15k"]
+atlas = ExtResource("3_sjeiv")
+region = Rect2(256, 64, 128, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y46oi"]
 atlas = ExtResource("3_w2dy2")
@@ -121,6 +146,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_or2ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqomu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i1puv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmwf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tydhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds15k")
+}],
+"loop": true,
+"name": &"Death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_y46oi")
 }],
 "loop": true,
@@ -147,8 +195,8 @@ Type = 1
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_usbgq")
-frame = 0
-frame_progress = 0.0
+animation = &"Death"
+frame_progress = 0.540496
 
 [node name="CollisionShape2D" parent="Attack Trigger Area" index="0"]
 position = Vector2(-3.5, 5.5)
