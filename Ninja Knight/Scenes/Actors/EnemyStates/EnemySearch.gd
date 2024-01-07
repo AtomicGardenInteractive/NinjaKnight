@@ -17,5 +17,6 @@ func Physics_Update(_delta: float):
 		enemy.velocity.x = direction * move_speed
 	else:
 		enemy.velocity.x = 0
+		Transitioned.emit(self,"enemyattack")
 	if player.global_position.distance_to(enemy.global_position) > sight_range:
 		Transitioned.emit(self,"enemyidle")

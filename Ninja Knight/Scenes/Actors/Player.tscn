@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ct1dtslkycmrk"]
+[gd_scene load_steps=21 format=3 uid="uid://ct1dtslkycmrk"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player.gd" id="1_fvvli"]
 [ext_resource type="SpriteFrames" uid="uid://btoqcq38ikcrd" path="res://Assets/Sprites/Animations/Player_SpriteFrames.tres" id="1_infe4"]
@@ -17,15 +17,14 @@
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/damaged.gd" id="14_2eh0g"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/death_ground.gd" id="15_ahps7"]
 [ext_resource type="Script" path="res://Scenes/Actors/PlayerStates/death_air.gd" id="16_57t3i"]
-[ext_resource type="Script" path="res://Scenes/Actors/Damageble.gd" id="17_ltacr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q82bc"]
+size = Vector2(16, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fc428"]
 size = Vector2(19, 33.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jnth2"]
-size = Vector2(16, 30)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q82bc"]
 size = Vector2(16, 30)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -46,21 +45,6 @@ metadata/_aseprite_wizard_config_ = {
 "op_exp": false,
 "source": ""
 }
-
-[node name="SwordHit" type="Area2D" parent="animations"]
-metadata/_edit_lock_ = true
-
-[node name="Attack Area" type="CollisionShape2D" parent="animations/SwordHit"]
-position = Vector2(22.5, -0.75)
-shape = SubResource("RectangleShape2D_fc428")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
-[node name="Detector" type="Area2D" parent="animations"]
-monitorable = false
-
-[node name="Player Hitbox" type="CollisionShape2D" parent="animations/Detector"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_jnth2")
 
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -179,9 +163,6 @@ animation_name = "Death_Ground"
 script = ExtResource("16_57t3i")
 animation_name = "Death_Air"
 
-[node name="Damageble" type="Node" parent="."]
-script = ExtResource("17_ltacr")
-
 [node name="Audio" type="Node" parent="."]
 
 [node name="Damage" type="AudioStreamPlayer" parent="Audio"]
@@ -204,6 +185,20 @@ bus = &"Effects"
 [node name="jump" type="AudioStreamPlayer" parent="Audio"]
 bus = &"Effects"
 
-[connection signal="body_entered" from="animations/SwordHit" to="state_machine/attack" method="_on_sword_hit_body_entered"]
-[connection signal="body_entered" from="animations/SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_body_entered"]
-[connection signal="area_entered" from="animations/Detector" to="." method="_on_detector_area_entered"]
+[node name="SwordHit" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Attack Area" type="CollisionShape2D" parent="SwordHit"]
+position = Vector2(22.5, -0.75)
+shape = SubResource("RectangleShape2D_fc428")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Detector" type="Area2D" parent="."]
+
+[node name="Player Hitbox" type="CollisionShape2D" parent="Detector"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_jnth2")
+
+[connection signal="body_entered" from="SwordHit" to="state_machine/attack" method="_on_sword_hit_body_entered"]
+[connection signal="body_entered" from="SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_body_entered"]
+[connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]

@@ -271,7 +271,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wee76")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 12.0
 }, {
@@ -342,7 +342,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qsrbc")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack_H",
 "speed": 12.0
 }, {
@@ -383,7 +383,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_isabr")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 12.0
 }, {
@@ -394,7 +394,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3xw8d")
 }],
-"loop": true,
+"loop": false,
 "name": &"Hit",
 "speed": 12.0
 }, {
@@ -445,6 +445,6 @@ Type = 2
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ld6dc")
-animation = &"Hit"
-frame = 1
-frame_progress = 0.0200023
+
+[node name="CollisionShape2D" parent="Attack Trigger Area" index="0"]
+position = Vector2(-0.5, 5.5)

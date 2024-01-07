@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scenes/Actors/Enemy State Machine.gd" id="5_ccv0j"]
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyStates/EnemyIdle.gd" id="6_64p5c"]
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyStates/EnemySearch.gd" id="7_vp65v"]
-[ext_resource type="Script" path="res://Scenes/Actors/Damageble.gd" id="8_525m2"]
+[ext_resource type="Script" path="res://Scenes/Actors/EnemyAttack.gd" id="10_o544n"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fqxh"]
 atlas = ExtResource("1_2lik6")
@@ -214,7 +214,7 @@ size = Vector2(22, 21)
 size = Vector2(22, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hksxr"]
-size = Vector2(44, 21)
+size = Vector2(55, 21)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_0v5gb")
@@ -232,7 +232,6 @@ position = Vector2(-11, 0)
 target_position = Vector2(0, 20)
 
 [node name="Hitbox" type="Area2D" parent="."]
-visible = false
 monitoring = false
 
 [node name="Damage received collision" type="CollisionShape2D" parent="Hitbox"]
@@ -240,14 +239,16 @@ position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_wrj3r")
 
 [node name="Attack Trigger Area" type="Area2D" parent="."]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Trigger Area"]
 position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_hksxr")
 
-[node name="Enemy State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_enemystate")]
+[node name="Enemy State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_enemystate", "parent")]
 script = ExtResource("5_ccv0j")
 initial_enemystate = NodePath("EnemyIdle")
+parent = NodePath("..")
 
 [node name="EnemyIdle" type="Node" parent="Enemy State Machine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_64p5c")
@@ -258,9 +259,5 @@ script = ExtResource("7_vp65v")
 enemy = NodePath("../..")
 attack_range = 25.0
 
-[node name="Damageble" type="Node" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("8_525m2")
-health = 2
-parent = NodePath("..")
-
-[connection signal="body_entered" from="Attack Trigger Area" to="." method="_on_attack_trigger_area_body_entered"]
+[node name="EnemyAttack" type="Node" parent="Enemy State Machine"]
+script = ExtResource("10_o544n")

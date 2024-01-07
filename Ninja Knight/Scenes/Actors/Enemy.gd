@@ -5,13 +5,14 @@ class_name Enemy
 @export var enemy_health_max : int = 2
 @export var enemy_damage : int = 1
 @export var is_attacking_time: = 1.0
+@export var is_attacking_time_H: = 2.0
 
 
 var player: CharacterBody2D
 enum Enemy_Type {Goblin, Skeleton_Mage, Jailer}
 var enemy_health_current: int = 100
 var is_attacking_timer: = 0.0
-
+var is_attacking_timer_H: = 0.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func enter():
@@ -21,6 +22,7 @@ func enter():
 func _physics_process(delta):
 	move_and_slide()
 	is_attacking_timer -=delta
+	is_attacking_timer_H -=delta
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -69,19 +71,21 @@ func _physics_process(delta):
 #	print("Goblin attacked")
 #	pass
 
+func goblin_attack():
+	print("I'm a ","Goblin")
+	is_attacking_timer = is_attacking_time
+	$AnimatedSprite2D.play("Attack")
 
-func _on_attack_trigger_area_body_entered(body):
-	for child in body.get_children():
-		if child is Damageable:
-			child.hit(enemy_damage)
-			match Type:
-				Enemy_Type.Goblin:
-					pass
-				Enemy_Type.Skeleton_Mage:
-					pass
-				Enemy_Type.Jailer:
-					pass
-				_:
-					pass
-			is_attacking_timer = is_attacking_time
-			$AnimatedSprite2D.play("Attack")
+func skeleton_mage_attack():
+	print("I'm a ","Skeleton_Mage")
+	is_attacking_timer = is_attacking_time
+	$AnimatedSprite2D.play("Attack")
+
+func jailer_attack():
+	print("I'm a ","Jailer")
+	if randi_range (0,2) > 1:
+		is_attacking_timer = is_attacking_time
+		$AnimatedSprite2D.play("Attack_H")
+	else:
+		is_attacking_timer = is_attacking_time
+		$AnimatedSprite2D.play("Attack")

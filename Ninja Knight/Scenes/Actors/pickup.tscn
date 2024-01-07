@@ -1,16 +1,87 @@
-[gd_scene load_steps=3 format=3 uid="uid://6mp6k1b1dd85"]
+[gd_scene load_steps=9 format=3 uid="uid://6mp6k1b1dd85"]
 
 [ext_resource type="Script" path="res://Pickup.gd" id="1_fj5w4"]
+[ext_resource type="Texture2D" uid="uid://dllqtlixdinb3" path="res://Assets/Sprites/Items/Finished_Heart_Canister.png" id="2_2038u"]
+[ext_resource type="Texture2D" uid="uid://crd31x8kpg40l" path="res://Assets/Sprites/Items/Finished_Double_Jump_Pickup.png" id="3_ai1fs"]
+[ext_resource type="Texture2D" uid="uid://clu3ifxruvd6w" path="res://Assets/Sprites/Items/Finished_Deflect_Pickup.png" id="4_8bxr6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vhnvk"]
 
+[sub_resource type="Animation" id="Animation_8wnhj"]
+resource_name = "Drift"
+length = 2.0
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -20, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1, 2)
+}
+
+[sub_resource type="Animation" id="Animation_lhr4g"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xkxcy"]
+_data = {
+"Drift": SubResource("Animation_8wnhj"),
+"RESET": SubResource("Animation_lhr4g")
+}
+
 [node name="Pickup" type="Node2D"]
 script = ExtResource("1_fj5w4")
-
-[node name="Area2D" type="Area2D" parent="."]
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_vhnvk")
+health_texture = ExtResource("2_2038u")
+Double_item_texture = ExtResource("3_ai1fs")
+Parry_item_texture = ExtResource("4_8bxr6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ai1fs")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_vhnvk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xkxcy")
+}
+
+[connection signal="area_entered" from="Sprite2D/Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1hqm7y7kgnvx"]
+[gd_scene load_steps=17 format=3 uid="uid://d1hqm7y7kgnvx"]
 
 [ext_resource type="PackedScene" uid="uid://b1ewykgtaow15" path="res://Scenes/Levels/Test_Hall.tscn" id="1_5bxvt"]
 [ext_resource type="Script" path="res://Scenes/game_handler.gd" id="1_uqhqr"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c5cx5ggxreyla" path="res://Scenes/Actors/Skeleton Mage.tscn" id="13_pynib"]
 [ext_resource type="PackedScene" uid="uid://b3s7dh0xb3ryu" path="res://Scenes/Actors/Goblin.tscn" id="14_d0mqy"]
 [ext_resource type="PackedScene" uid="uid://7grb5n6w36e7" path="res://Scenes/Actors/Jailer.tscn" id="15_rr454"]
+[ext_resource type="PackedScene" uid="uid://6mp6k1b1dd85" path="res://Scenes/Actors/pickup.tscn" id="16_8qqq3"]
 
 [node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu")]
 process_mode = 3
@@ -35,21 +36,17 @@ scale = Vector2(1.00209, 1)
 
 [node name="CheckPoint" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
 position = Vector2(-52.1085, 40)
-scale = Vector2(1, 1)
 
 [node name="CheckPoint3" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
 position = Vector2(1811.77, -296)
-scale = Vector2(1, 1)
 checkpoint_no = 1
 
 [node name="CheckPoint4" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
 position = Vector2(1237.58, -872)
-scale = Vector2(1, 1)
 checkpoint_no = 2
 
 [node name="CheckPoint5" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
 position = Vector2(106.221, -744)
-scale = Vector2(1, 1)
 checkpoint_no = 3
 
 [node name="SpikesHolder" type="Node2D" parent="Level_Loader/Level"]
@@ -70,6 +67,10 @@ scale = Vector2(10.4473, 1.58305)
 [node name="Spikes4" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
 position = Vector2(982.346, -1066.98)
 scale = Vector2(17.3561, 1.58305)
+
+[node name="Pickup" parent="Level_Loader/Level" instance=ExtResource("16_8qqq3")]
+position = Vector2(155.323, -756)
+scale = Vector2(1.00209, 1)
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
 process_mode = 1
