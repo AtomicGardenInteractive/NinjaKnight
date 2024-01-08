@@ -439,7 +439,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Enemy" instance=ExtResource("1_egbad")]
+[node name="Jailer" instance=ExtResource("1_egbad")]
 Type = 2
 
 [node name="AnimatedSprite2D" parent="." index="0"]

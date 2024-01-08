@@ -62,8 +62,3 @@ func process_physics(delta: float) -> State:
 		return idle_state
 	return null
 
-
-func _on_sword_hit_body_entered(body):
-	for child in body.get_children():
-		if child is Damageable:
-			child.hit(damage)

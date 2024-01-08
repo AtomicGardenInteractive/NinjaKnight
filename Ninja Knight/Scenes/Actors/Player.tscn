@@ -197,8 +197,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Player Hitbox" type="CollisionShape2D" parent="Detector"]
 position = Vector2(0, 1)
+scale = Vector2(0.84, 0.879999)
 shape = SubResource("RectangleShape2D_jnth2")
 
-[connection signal="body_entered" from="SwordHit" to="state_machine/attack" method="_on_sword_hit_body_entered"]
-[connection signal="body_entered" from="SwordHit" to="state_machine/attack_combo" method="_on_sword_hit_body_entered"]
 [connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]

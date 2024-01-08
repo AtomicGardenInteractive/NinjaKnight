@@ -18,6 +18,10 @@ var player_health_current: int = player_health_max
 var dodge_cooldown_timer: float = 0.0
 var attack_cooldown_timer: float = 0.0
 
+var parry_item: bool = false
+var double_jump_item: bool = false
+
+
 @export var start_checkpoint: Checkpoint
 var checkpoint_current: Checkpoint
 
@@ -40,10 +44,12 @@ func _process(delta: float) -> void:
 	state_machine.process_frame(delta)
 	dodge_cooldown_timer -= delta
 	attack_cooldown_timer -= delta
+	if player_health_current > player_health_max:
+		player_health_current = player_health_max
 
 func take_damage():
 	player_health_current -= 1
-	print("hurt", player_health_current)
+	print("hurt ", player_health_current)
 	if player_health_current <= 0:
 		die()
 
@@ -53,9 +59,26 @@ func die():
 		player_health_current = player_health_max
 
 func _on_detector_area_entered(area):
-	if area.get_parent() is Checkpoint:
-		if area.get_parent().checkpoint_no > checkpoint_current.checkpoint_no:
-			checkpoint_current = area.get_parent()
+	var detected_object: Node2D = area.get_parent()
+	if detected_object is Checkpoint:
+		if detected_object.checkpoint_no > checkpoint_current.checkpoint_no:
+			checkpoint_current = detected_object
 			print(checkpoint_current.checkpoint_no)
-	elif area.get_parent() is Spikes or Enemy:
+	if detected_object is Pickup:
+		print("player touches pickup")
+		var picked_up_item: Pickup = detected_object
+		match picked_up_item.type:
+			picked_up_item.Pickup_type.Health:
+				print("health pickup gotten")
+				player_health_current += 1
+				picked_up_item.queue_free()
+			picked_up_item.Pickup_type.Double_item:
+				double_jump_item = true
+				picked_up_item.queue_free()
+			picked_up_item.Pickup_type.Parry_item:
+				parry_item = true
+				picked_up_item.queue_free()
+	if detected_object is Spikes :
+		print(detected_object.name)
 		take_damage()
+

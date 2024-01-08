@@ -80,12 +80,15 @@ func skeleton_mage_attack():
 	print("I'm a ","Skeleton_Mage")
 	is_attacking_timer = is_attacking_time
 	$AnimatedSprite2D.play("Attack")
+	
 
 func jailer_attack():
 	print("I'm a ","Jailer")
 	if randi_range (0,2) > 1:
 		is_attacking_timer = is_attacking_time
 		$AnimatedSprite2D.play("Attack_H")
+		await $AnimatedSprite2D.animation_finished
 	else:
 		is_attacking_timer = is_attacking_time
 		$AnimatedSprite2D.play("Attack")
+		await $AnimatedSprite2D.animation_finished

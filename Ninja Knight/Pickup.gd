@@ -25,8 +25,3 @@ func _ready():
 func _process(delta):
 	$AnimationPlayer.play("Drift")
 
-
-func _on_area_2d_area_entered(area):
-	if area.get_parent() is Player:
-		print("pick up dectects player")
-		self.queue_free()
