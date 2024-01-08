@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3508dvtauchh"]
+[gd_scene load_steps=41 format=3 uid="uid://c3508dvtauchh"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Enemy.gd" id="1_0v5gb"]
 [ext_resource type="Texture2D" uid="uid://c5yf6dn32s2o7" path="res://Assets/Sprites/Enemies/Goblin/Attack_Goblin_Character.png" id="1_2lik6"]
@@ -214,7 +214,13 @@ size = Vector2(22, 21)
 size = Vector2(22, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hksxr"]
-size = Vector2(55, 21)
+size = Vector2(22, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3tr02"]
+size = Vector2(68, 59)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1jbn"]
+size = Vector2(79, 73)
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_0v5gb")
@@ -222,6 +228,8 @@ script = ExtResource("1_0v5gb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_edf77")
 animation = &"Attack"
+frame = 8
+frame_progress = 1.0
 
 [node name="Body Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 5.5)
@@ -239,11 +247,37 @@ position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_wrj3r")
 
 [node name="Attack Trigger Area" type="Area2D" parent="."]
-monitorable = false
+monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Trigger Area"]
-position = Vector2(-1, 5.5)
+[node name="GoblinLeft" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(-11, 5.5)
 shape = SubResource("RectangleShape2D_hksxr")
+disabled = true
+
+[node name="GoblinRight" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(11, 5.5)
+shape = SubResource("RectangleShape2D_hksxr")
+disabled = true
+
+[node name="JailerLeft" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(-34, -13.5)
+shape = SubResource("RectangleShape2D_3tr02")
+disabled = true
+
+[node name="JailerRight" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(34, -13.5)
+shape = SubResource("RectangleShape2D_3tr02")
+disabled = true
+
+[node name="JailerHLeft" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(-39.5, -20.5)
+shape = SubResource("RectangleShape2D_j1jbn")
+disabled = true
+
+[node name="JailerHRight" type="CollisionShape2D" parent="Attack Trigger Area"]
+position = Vector2(39.5, -20.5)
+shape = SubResource("RectangleShape2D_j1jbn")
+disabled = true
 
 [node name="Enemy State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_enemystate", "parent")]
 script = ExtResource("5_ccv0j")
@@ -261,3 +295,9 @@ attack_range = 25.0
 
 [node name="EnemyAttack" type="Node" parent="Enemy State Machine"]
 script = ExtResource("10_o544n")
+
+[node name="Marker2DLeft" type="Marker2D" parent="."]
+position = Vector2(-52, 0)
+
+[node name="Marker2DRight" type="Marker2D" parent="."]
+position = Vector2(52, 0)

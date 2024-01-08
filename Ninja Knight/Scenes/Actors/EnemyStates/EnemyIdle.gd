@@ -18,7 +18,6 @@ func enter():
 	super()
 	player = get_tree().get_first_node_in_group("Player")
 	randomise_wander()
-	print("I might be here from the attack state")
 
 func Update(delta: float):
 	if wander_time > 0:

@@ -70,3 +70,6 @@ func exit() -> void:
 	parent.set_collision_mask(1)
 	parent.dodge_cooldown_timer = parent.dodge_cooldown
 	return
+
+func player_hit():
+	return null

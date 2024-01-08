@@ -29,7 +29,7 @@ options_menu = NodePath("Options_Menu_Layer/Options_Menu")
 [node name="Level" parent="Level_Loader" instance=ExtResource("4_s1yen")]
 
 [node name="Player" parent="Level_Loader/Level" node_paths=PackedStringArray("start_checkpoint") instance=ExtResource("2_dd0a3")]
-start_checkpoint = NodePath("../CheckpointsHolder/CheckPoint5")
+start_checkpoint = NodePath("../CheckpointsHolder/CheckPoint")
 
 [node name="CheckpointsHolder" type="Node2D" parent="Level_Loader/Level"]
 scale = Vector2(1.00209, 1)
@@ -70,6 +70,18 @@ scale = Vector2(17.3561, 1.58305)
 
 [node name="Pickup" parent="Level_Loader/Level" instance=ExtResource("16_8qqq3")]
 position = Vector2(155.323, -756)
+scale = Vector2(1.00209, 1)
+
+[node name="Skeleton Mage" parent="Level_Loader/Level" instance=ExtResource("13_pynib")]
+position = Vector2(691.44, 31)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin" parent="Level_Loader/Level" instance=ExtResource("14_d0mqy")]
+position = Vector2(315.657, 31)
+scale = Vector2(1.00209, 1)
+
+[node name="Enemy" parent="Level_Loader/Level" instance=ExtResource("15_rr454")]
+position = Vector2(-284.592, -754)
 scale = Vector2(1.00209, 1)
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
@@ -113,12 +125,3 @@ game_handler = NodePath("../..")
 stream = ExtResource("10_gcuc6")
 volume_db = -20.0
 bus = &"Music"
-
-[node name="Skeleton Mage" parent="." instance=ExtResource("13_pynib")]
-position = Vector2(690, 31)
-
-[node name="Goblin" parent="." instance=ExtResource("14_d0mqy")]
-position = Vector2(315, 31)
-
-[node name="Enemy" parent="." instance=ExtResource("15_rr454")]
-position = Vector2(-284, -754)

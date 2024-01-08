@@ -6,6 +6,12 @@ var idle_state: State
 var fall_state: State
 @export
 var block_parry_state: State
+@export
+var damaged_state : State
+@export
+var death_grounded_state : State
+@export
+var death_air_state : State
 
 @export_group("Parry Window")
 @export var parry_time = 0.1

@@ -5,14 +5,13 @@ class_name Enemy
 @export var enemy_health_max : int = 2
 @export var enemy_damage : int = 1
 @export var is_attacking_time: = 1.0
-@export var is_attacking_time_H: = 2.0
+@export var fireball = preload("res://Scenes/Actors/fireball.tscn")
 
 
 var player: CharacterBody2D
 enum Enemy_Type {Goblin, Skeleton_Mage, Jailer}
 var enemy_health_current: int = 100
 var is_attacking_timer: = 0.0
-var is_attacking_timer_H: = 0.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func enter():
@@ -22,7 +21,6 @@ func enter():
 func _physics_process(delta):
 	move_and_slide()
 	is_attacking_timer -=delta
-	is_attacking_timer_H -=delta
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -72,23 +70,55 @@ func _physics_process(delta):
 #	pass
 
 func goblin_attack():
-	print("I'm a ","Goblin")
 	is_attacking_timer = is_attacking_time
 	$AnimatedSprite2D.play("Attack")
+	if $AnimatedSprite2D.flip_h == true:
+		$"Attack Trigger Area/GoblinRight".disabled = false
+	if $AnimatedSprite2D.flip_h == false:
+		$"Attack Trigger Area/GoblinLeft".disabled = false
+	await $AnimatedSprite2D.animation_finished
+	$"Attack Trigger Area/GoblinRight".disabled = true
+	$"Attack Trigger Area/GoblinLeft".disabled = true
 
 func skeleton_mage_attack():
-	print("I'm a ","Skeleton_Mage")
 	is_attacking_timer = is_attacking_time
 	$AnimatedSprite2D.play("Attack")
-	
+	if $AnimatedSprite2D.flip_h == true:
+		launch_fireball(true)
+	elif $AnimatedSprite2D.flip_h == false:
+		launch_fireball(false)
+	await $AnimatedSprite2D.animation_finished
+
+func launch_fireball(leftright:bool):
+	if leftright == false:
+		var instance = fireball.instantiate()
+		instance.position = $Marker2DLeft.global_position
+		get_parent().add_child(instance)
+	elif leftright == true:
+		var instance = fireball.instantiate()
+		instance.fb_velocity = Vector2(1,0)
+		instance.flipsprite = true
+		instance.position = $Marker2DRight.global_position
+		get_parent().add_child(instance)
 
 func jailer_attack():
-	print("I'm a ","Jailer")
 	if randi_range (0,2) > 1:
-		is_attacking_timer = is_attacking_time
+		is_attacking_timer = is_attacking_time + 0.5
 		$AnimatedSprite2D.play("Attack_H")
+		if $AnimatedSprite2D.flip_h == true:
+			$"Attack Trigger Area/JailerRight".disabled = false
+		if $AnimatedSprite2D.flip_h == false:
+			$"Attack Trigger Area/JailerLeft".disabled = false
 		await $AnimatedSprite2D.animation_finished
+		$"Attack Trigger Area/JailerRight".disabled = true
+		$"Attack Trigger Area/JailerLeft".disabled = true
 	else:
 		is_attacking_timer = is_attacking_time
 		$AnimatedSprite2D.play("Attack")
+		if $AnimatedSprite2D.flip_h == true:
+			$"Attack Trigger Area/JailerHRight".disabled = false
+		if $AnimatedSprite2D.flip_h == false:
+			$"Attack Trigger Area/JailerHLeft".disabled = false
 		await $AnimatedSprite2D.animation_finished
+		$"Attack Trigger Area/JailerHRight".disabled = true
+		$"Attack Trigger Area/JailerHLeft".disabled = true

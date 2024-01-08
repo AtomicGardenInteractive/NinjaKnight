@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3o4ona5jb5jp"]
+
+[ext_resource type="Script" path="res://Fireball.gd" id="1_yflsy"]
+[ext_resource type="Texture2D" uid="uid://52u5nm2gwf00" path="res://Assets/Sprites/Enemies/Skeleton Mage/Projectile_Fireball.png" id="2_he2pl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnow0"]
+atlas = ExtResource("2_he2pl")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr2vi"]
+atlas = ExtResource("2_he2pl")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkoch"]
+atlas = ExtResource("2_he2pl")
+region = Rect2(0, 32, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kxr2d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnow0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nr2vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkoch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j4ync"]
+radius = 6.0
+height = 34.0
+
+[node name="Fireball" type="RigidBody2D"]
+z_index = 1
+collision_layer = 4
+collision_mask = 4
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_yflsy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kxr2d")
+frame_progress = 0.553947
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_j4ync")

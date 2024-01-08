@@ -445,6 +445,8 @@ Type = 2
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ld6dc")
+frame = 10
+frame_progress = 0.0
 
-[node name="CollisionShape2D" parent="Attack Trigger Area" index="0"]
-position = Vector2(-0.5, 5.5)
+[node name="EnemySearch" parent="Enemy State Machine" index="1"]
+attack_range = 30.0

@@ -4,6 +4,12 @@ extends State
 var idle_state: State
 @export
 var fall_state: State
+@export
+var damaged_state : State
+@export
+var death_grounded_state : State
+@export
+var death_air_state : State
 
 @export_group("Animation Time")
 @export var animation_time = 0.1

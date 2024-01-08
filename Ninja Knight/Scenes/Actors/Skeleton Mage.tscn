@@ -195,11 +195,7 @@ Type = 1
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_usbgq")
-animation = &"Death"
-frame_progress = 0.540496
-
-[node name="CollisionShape2D" parent="Attack Trigger Area" index="0"]
-position = Vector2(-3.5, 5.5)
+frame = 12
 
 [node name="EnemySearch" parent="Enemy State Machine" index="1"]
 attack_range = 150.0

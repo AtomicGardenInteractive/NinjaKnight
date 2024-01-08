@@ -54,6 +54,7 @@ func take_damage():
 		die()
 
 func die():
+	await $animations.animation_finished
 	if checkpoint_current != null:
 		self.position = checkpoint_current.global_position
 		player_health_current = player_health_max
@@ -64,21 +65,30 @@ func _on_detector_area_entered(area):
 		if detected_object.checkpoint_no > checkpoint_current.checkpoint_no:
 			checkpoint_current = detected_object
 			print(checkpoint_current.checkpoint_no)
+	
 	if detected_object is Pickup:
-		print("player touches pickup")
 		var picked_up_item: Pickup = detected_object
 		match picked_up_item.type:
 			picked_up_item.Pickup_type.Health:
-				print("health pickup gotten")
 				player_health_current += 1
 				picked_up_item.queue_free()
+				
 			picked_up_item.Pickup_type.Double_item:
 				double_jump_item = true
 				picked_up_item.queue_free()
+				
 			picked_up_item.Pickup_type.Parry_item:
 				parry_item = true
 				picked_up_item.queue_free()
+	
 	if detected_object is Spikes :
 		print(detected_object.name)
 		take_damage()
-
+	
+	if detected_object is Fireball :
+		print(detected_object.name)
+		take_damage()
+	
+	if detected_object is Enemy :
+		print(detected_object.name)
+		take_damage()

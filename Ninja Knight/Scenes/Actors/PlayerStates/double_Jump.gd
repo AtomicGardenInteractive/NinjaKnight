@@ -10,6 +10,12 @@ var idle_state: State
 var move_state: State
 @export
 var dodge_state: State
+@export
+var damaged_state : State
+@export
+var death_grounded_state : State
+@export
+var death_air_state : State
 
 @export_group ("Other")
 @export
@@ -52,4 +58,12 @@ func process_physics(delta: float) -> State:
 			return move_state
 		return idle_state
 	
+	if parent.player_health_current <= 0:
+		if parent.is_on_floor():
+			return death_grounded_state
+		else:
+			return death_air_state
+	
+	if parent.player_health_current < player_health:
+		return damaged_state
 	return null

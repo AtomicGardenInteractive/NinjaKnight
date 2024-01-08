@@ -7,7 +7,18 @@ var idle_state: State
 @export_group("SFX")
 @export var Death_FX : AudioStreamPlayer
 
-func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed("Debug_Death"):
+var anim_finished = false
+
+func enter() -> void:
+	super()
+	leaver()
+
+func leaver():
+	await $"../../animations".animation_finished
+	anim_finished = true
+
+func process_frame(_delta: float) -> State:
+	if anim_finished == true:
+		anim_finished = false
 		return idle_state
 	return

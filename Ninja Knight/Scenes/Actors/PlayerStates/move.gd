@@ -14,9 +14,11 @@ var dodge_state: State
 @export
 var block_state: State
 @export
-var damaged_state: State
+var damaged_state : State
 @export
-var death_state: State
+var death_grounded_state : State
+@export
+var death_air_state : State
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed('move_jump') and parent.is_on_floor():
@@ -31,10 +33,7 @@ func process_input(_event: InputEvent) -> State:
 		parent.set_collision_mask(2)
 	if Input.is_action_just_released("move_drop"):
 		parent.set_collision_mask(1)
-	if Input.is_action_just_pressed("Debug_Damage"):
-		return damaged_state
-	if Input.is_action_just_pressed("Debug_Death"):
-		return death_state
+
 	return null
 
 func process_physics(delta: float) -> State:
@@ -58,4 +57,14 @@ func process_physics(delta: float) -> State:
 	
 	if !parent.is_on_floor():
 		return fall_state
+		
+	if parent.player_health_current <= 0:
+		if parent.is_on_floor():
+			return death_grounded_state
+		else:
+			return death_air_state
+	
+	if parent.player_health_current < player_health:
+		return damaged_state
+	
 	return null
