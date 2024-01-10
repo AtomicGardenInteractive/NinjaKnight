@@ -63,7 +63,9 @@ _data = {
 "RESET": SubResource("Animation_lhr4g")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vhnvk"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snmet"]
+radius = 9.0
+height = 66.0
 
 [node name="Pickup" type="Node2D"]
 script = ExtResource("1_fj5w4")
@@ -82,4 +84,33 @@ libraries = {
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_vhnvk")
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_snmet")
+
+[node name="Container" type="Container" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 80.0
+offset_bottom = 30.0
+scale = Vector2(0.405, 0.405)
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Double jump"
+
+[node name="Container2" type="Container" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = 10.0
+offset_right = 92.0
+offset_bottom = 30.0
+scale = Vector2(0.405, 0.405)
+
+[node name="Label" type="Label" parent="Container2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Parry"

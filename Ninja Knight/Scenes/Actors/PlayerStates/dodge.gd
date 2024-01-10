@@ -24,12 +24,15 @@ var attack_state: State
 var jump_buffer_timer : float = 0.0
 var attack_buffer_timer : float = 0.0
 var dodge_timer : float = 0.0
+var player_current_health : int
 
 func enter() -> void:
 	super()
+	Dodge_FX.play()
+	player_current_health = parent.player_health_current
 	parent.set_collision_layer(2)
 	parent.set_collision_mask(2)
-
+	parent.dodge_used()
 	parent.velocity = Vector2(0,0)
 	if parent.animations.flip_h:
 		parent.velocity.x = -dodge_force
@@ -69,6 +72,7 @@ func exit() -> void:
 	parent.set_collision_layer(1)
 	parent.set_collision_mask(1)
 	parent.dodge_cooldown_timer = parent.dodge_cooldown
+	parent.player_health_current = player_current_health
 	return
 
 func player_hit():

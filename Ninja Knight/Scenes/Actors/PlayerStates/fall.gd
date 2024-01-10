@@ -47,7 +47,7 @@ func process_input(_event: InputEvent) -> State:
 	if coyote_timer > 0 and parent.prev_state != jump_state and parent.prev_state != double_jump_state:
 		if Input.is_action_just_pressed('move_jump') and parent.prev_state != jump_state:
 			return jump_state
-	elif Input.is_action_just_pressed('move_jump') and !parent.has_double_jumped:
+	elif Input.is_action_just_pressed('move_jump') and !parent.has_double_jumped and parent.double_jump_item == true:
 		parent.has_double_jumped = true
 		return double_jump_state
 	elif Input.is_action_just_pressed('move_jump'):

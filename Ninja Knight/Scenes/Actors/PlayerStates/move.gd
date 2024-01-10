@@ -45,8 +45,6 @@ func process_physics(delta: float) -> State:
 	if Input.is_action_pressed("move_right"):
 		movement += 1
 	movement *= move_speed
-	#Broken
-	#var movement = Input.get_axis('move_left','move_right') * move_speed
 	
 	if movement == 0:
 		return idle_state

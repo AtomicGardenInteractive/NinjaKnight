@@ -29,6 +29,7 @@ func enter() -> void:
 	super()
 	parent.set_collision_mask(2)
 	parent.velocity.y = -jump_force
+	Jump_FX.play()
 	return
 func exit() -> void:
 	super()
@@ -36,7 +37,7 @@ func exit() -> void:
 	return
 
 func process_input(_event: InputEvent) -> State:
-	if Input.is_action_just_pressed('move_jump') and parent.prev_state != double_jump_state:
+	if Input.is_action_just_pressed('move_jump') and parent.prev_state != double_jump_state and parent.double_jump_item == true:
 		parent.has_double_jumped = true
 		return double_jump_state
 	if Input.is_action_just_pressed('move_dodge') and parent.dodge_cooldown_timer < 0:

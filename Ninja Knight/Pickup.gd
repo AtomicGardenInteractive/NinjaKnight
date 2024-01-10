@@ -17,8 +17,10 @@ func _ready():
 			$Sprite2D.set_texture(health_texture)
 		Pickup_type.Double_item:
 			$Sprite2D.set_texture(Double_item_texture)
+			$Container.visible = true
 		Pickup_type.Parry_item:
 			$Sprite2D.set_texture(Parry_item_texture)
+			$Container2.visible = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

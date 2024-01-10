@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cbwd05rxa28pc"]
+
+[ext_resource type="Texture2D" uid="uid://b88w3853pdl1i" path="res://Assets/Sprites/Finished_Dash_Icon.png" id="1_hk6v6"]
+
+[resource]
+atlas = ExtResource("1_hk6v6")
+region = Rect2(14, 14, 21, 25)

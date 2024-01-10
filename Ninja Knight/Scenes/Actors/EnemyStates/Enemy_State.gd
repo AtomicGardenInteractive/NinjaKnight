@@ -7,6 +7,7 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity")
 var parent: Enemy
 
 func enter():
+	var parent = $"."
 	pass
 
 func exit():

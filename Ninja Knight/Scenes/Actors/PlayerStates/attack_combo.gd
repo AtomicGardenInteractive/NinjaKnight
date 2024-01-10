@@ -26,8 +26,18 @@ var attack_timer = 0.0
 
 func enter() -> void:
 	super()
+	Attack_FX.play()
 	attack_timer = attack_time
+	if $"../../animations".flip_h == false:
+		$"../../SwordHit/Attack Area Right".disabled = false
+	else:
+		$"../../SwordHit/Attack Area Left".disabled = false
 	return
+
+func exit() -> void:
+	super()
+	$"../../SwordHit/Attack Area Right".disabled = true
+	$"../../SwordHit/Attack Area Left".disabled = true
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += gravity * delta

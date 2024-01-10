@@ -17,12 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://7grb5n6w36e7" path="res://Scenes/Actors/Jailer.tscn" id="15_rr454"]
 [ext_resource type="PackedScene" uid="uid://6mp6k1b1dd85" path="res://Scenes/Actors/pickup.tscn" id="16_8qqq3"]
 
-[node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu")]
+[node name="Game_Handler" type="Node" node_paths=PackedStringArray("pause_menu", "load_menu", "options_menu", "player", "HUD")]
 process_mode = 3
 script = ExtResource("1_uqhqr")
 pause_menu = NodePath("Pause_Menu_Layer/Pause_Menu")
 load_menu = NodePath("Load_Menu_Layer/Load_Menu")
 options_menu = NodePath("Options_Menu_Layer/Options_Menu")
+player = NodePath("Level_Loader/Level/Player")
+HUD = NodePath("UI_Layer/HUD")
 
 [node name="Level_Loader" type="Node" parent="."]
 
@@ -46,42 +48,254 @@ position = Vector2(1237.58, -872)
 checkpoint_no = 2
 
 [node name="CheckPoint5" parent="Level_Loader/Level/CheckpointsHolder" instance=ExtResource("11_c76yv")]
-position = Vector2(106.221, -744)
+position = Vector2(260.999, -744)
 checkpoint_no = 3
+
+[node name="PickupHolder" type="Node2D" parent="Level_Loader/Level"]
+position = Vector2(1520.16, 78.0001)
+scale = Vector2(12.7043, 1)
+
+[node name="Pickup" parent="Level_Loader/Level/PickupHolder" instance=ExtResource("16_8qqq3")]
+position = Vector2(-43.619, -295)
+scale = Vector2(0.0788777, 1)
+type = 2
+
+[node name="Pickup2" parent="Level_Loader/Level/PickupHolder" instance=ExtResource("16_8qqq3")]
+position = Vector2(-17.1162, -192)
+scale = Vector2(0.0788777, 1)
+type = 1
+
+[node name="Pickup3" parent="Level_Loader/Level/PickupHolder" instance=ExtResource("16_8qqq3")]
+position = Vector2(32.6554, -45)
+scale = Vector2(0.0788777, 1)
+
+[node name="Pickup4" parent="Level_Loader/Level/PickupHolder" instance=ExtResource("16_8qqq3")]
+position = Vector2(37.1514, -45)
+scale = Vector2(0.0788777, 1)
+
+[node name="Pickup5" parent="Level_Loader/Level/PickupHolder" instance=ExtResource("16_8qqq3")]
+position = Vector2(40.622, -45)
+scale = Vector2(0.0788777, 1)
 
 [node name="SpikesHolder" type="Node2D" parent="Level_Loader/Level"]
 scale = Vector2(0.928287, 0.631692)
 
 [node name="Spikes" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
-position = Vector2(551.625, 117.146)
-scale = Vector2(6.90656, 0.949826)
+position = Vector2(490.093, 117.146)
+
+[node name="Spikes5" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(509.524, 117.146)
+
+[node name="Spikes6" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(527.876, 117.146)
+
+[node name="Spikes7" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(546.227, 117.146)
+
+[node name="Spikes8" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(565.658, 117.146)
+
+[node name="Spikes9" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(585.089, 117.146)
+
+[node name="Spikes10" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(604.52, 117.146)
+
+[node name="Spikes11" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(623.951, 117.146)
 
 [node name="Spikes2" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
-position = Vector2(1637.6, 123.478)
-scale = Vector2(13.6858, 1.58305)
+position = Vector2(1509.14, 117.146)
+
+[node name="Spikes12" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1528.57, 117.146)
+
+[node name="Spikes13" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1548, 117.146)
+
+[node name="Spikes14" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1567.43, 117.146)
+
+[node name="Spikes15" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1586.87, 117.146)
+
+[node name="Spikes16" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1606.3, 117.146)
+
+[node name="Spikes17" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1625.73, 117.146)
+
+[node name="Spikes18" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1645.16, 117.146)
+
+[node name="Spikes19" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1664.59, 117.146)
+
+[node name="Spikes20" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1684.02, 117.146)
+
+[node name="Spikes21" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1703.45, 117.146)
+
+[node name="Spikes22" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1722.88, 117.146)
+
+[node name="Spikes23" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1742.31, 117.146)
+
+[node name="Spikes24" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1761.74, 117.146)
+
+[node name="Spikes25" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1781.18, 117.146)
 
 [node name="Spikes3" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
-position = Vector2(2154.68, -432.173)
-scale = Vector2(10.4473, 1.58305)
+position = Vector2(2060.77, -440.088)
+
+[node name="Spikes26" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2080.2, -440.088)
+
+[node name="Spikes27" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2099.63, -440.088)
+
+[node name="Spikes28" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2119.06, -440.088)
+
+[node name="Spikes29" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2138.49, -440.088)
+
+[node name="Spikes30" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2157.92, -440.088)
+
+[node name="Spikes31" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2177.35, -440.088)
+
+[node name="Spikes32" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2196.78, -440.088)
+
+[node name="Spikes33" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2216.21, -440.088)
+
+[node name="Spikes34" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2235.65, -440.088)
+
+[node name="Spikes35" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(2254, -440.088)
 
 [node name="Spikes4" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
-position = Vector2(982.346, -1066.98)
-scale = Vector2(17.3561, 1.58305)
+position = Vector2(820.42, -1073.31)
 
-[node name="Pickup" parent="Level_Loader/Level" instance=ExtResource("16_8qqq3")]
-position = Vector2(155.323, -756)
+[node name="Spikes36" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(839.851, -1073.31)
+
+[node name="Spikes37" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(859.282, -1073.31)
+
+[node name="Spikes38" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(878.713, -1073.31)
+
+[node name="Spikes39" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(898.144, -1073.31)
+
+[node name="Spikes40" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(917.575, -1073.31)
+
+[node name="Spikes41" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(937.006, -1073.31)
+
+[node name="Spikes42" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(956.438, -1073.31)
+
+[node name="Spikes43" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(975.868, -1073.31)
+
+[node name="Spikes44" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(995.299, -1073.31)
+
+[node name="Spikes45" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1014.73, -1073.31)
+
+[node name="Spikes46" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1034.16, -1073.31)
+
+[node name="Spikes47" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1053.59, -1073.31)
+
+[node name="Spikes48" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1073.02, -1073.31)
+
+[node name="Spikes49" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1092.45, -1073.31)
+
+[node name="Spikes50" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1111.89, -1073.31)
+
+[node name="Spikes51" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1131.32, -1073.31)
+
+[node name="Spikes52" parent="Level_Loader/Level/SpikesHolder" instance=ExtResource("5_h5snc")]
+position = Vector2(1150.75, -1073.31)
+
+[node name="EnemyHolder" type="Node2D" parent="Level_Loader/Level"]
+
+[node name="Skeleton Mage" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("13_pynib")]
+position = Vector2(590.229, 31)
 scale = Vector2(1.00209, 1)
 
-[node name="Skeleton Mage" parent="Level_Loader/Level" instance=ExtResource("13_pynib")]
-position = Vector2(691.44, 31)
+[node name="Skeleton Mage3" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("13_pynib")]
+position = Vector2(1295.7, 31)
 scale = Vector2(1.00209, 1)
 
-[node name="Goblin" parent="Level_Loader/Level" instance=ExtResource("14_d0mqy")]
+[node name="Skeleton Mage2" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("13_pynib")]
+position = Vector2(1385.89, -754)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
 position = Vector2(315.657, 31)
 scale = Vector2(1.00209, 1)
 
-[node name="Enemy" parent="Level_Loader/Level" instance=ExtResource("15_rr454")]
+[node name="Goblin2" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(677.41, 31)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin3" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(758.579, 31)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin10" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(1254.61, 31)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin11" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(1187.47, 31)
+scale = Vector2(1.00209, 1)
+
+[node name="Enemy" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("15_rr454")]
 position = Vector2(-284.592, -754)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin4" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(1531.19, -754)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin5" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(1243.59, -754)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin8" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(1693.53, -754)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin9" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(1795.74, -754)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin6" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(524.091, -756)
+scale = Vector2(1.00209, 1)
+
+[node name="Goblin7" parent="Level_Loader/Level/EnemyHolder" instance=ExtResource("14_d0mqy")]
+position = Vector2(404.843, -752)
 scale = Vector2(1.00209, 1)
 
 [node name="Level_Test" parent="Level_Loader" instance=ExtResource("1_5bxvt")]
@@ -124,4 +338,5 @@ game_handler = NodePath("../..")
 [node name="Background music" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("10_gcuc6")
 volume_db = -20.0
+autoplay = true
 bus = &"Music"

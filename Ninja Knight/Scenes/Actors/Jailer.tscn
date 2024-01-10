@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://7grb5n6w36e7"]
+[gd_scene load_steps=58 format=3 uid="uid://7grb5n6w36e7"]
 
 [ext_resource type="PackedScene" uid="uid://c3508dvtauchh" path="res://Scenes/Actors/Enemy.tscn" id="1_egbad"]
 [ext_resource type="Texture2D" uid="uid://ucmip0mbghte" path="res://Assets/Sprites/Enemies/Jailer/LightAttack_Boss.png" id="2_ux8oy"]
@@ -106,38 +106,6 @@ region = Rect2(600, 192, 300, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_66evu"]
 atlas = ExtResource("3_80f68")
 region = Rect2(900, 192, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fuh5u"]
-atlas = ExtResource("3_80f68")
-region = Rect2(1200, 192, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p5kr6"]
-atlas = ExtResource("3_80f68")
-region = Rect2(0, 288, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rhlk7"]
-atlas = ExtResource("3_80f68")
-region = Rect2(300, 288, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qo4l1"]
-atlas = ExtResource("3_80f68")
-region = Rect2(600, 288, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_blen3"]
-atlas = ExtResource("3_80f68")
-region = Rect2(900, 288, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rqyxq"]
-atlas = ExtResource("3_80f68")
-region = Rect2(1200, 288, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_25oc6"]
-atlas = ExtResource("3_80f68")
-region = Rect2(0, 384, 300, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qsrbc"]
-atlas = ExtResource("3_80f68")
-region = Rect2(300, 384, 300, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ejfq"]
 atlas = ExtResource("4_ktjmw")
@@ -317,30 +285,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_66evu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fuh5u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p5kr6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rhlk7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qo4l1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_blen3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rqyxq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_25oc6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qsrbc")
 }],
 "loop": false,
 "name": &"Attack_H",
@@ -439,14 +383,27 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sqvj3"]
+size = Vector2(33, 56)
+
 [node name="Jailer" instance=ExtResource("1_egbad")]
+collision_layer = 5
+collision_mask = 5
 Type = 2
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_ld6dc")
-frame = 10
+animation = &"Attack_H"
+frame = 0
 frame_progress = 0.0
+
+[node name="Jailer" parent="Hitbox" index="2"]
+position = Vector2(-0.5, -11.5)
 
 [node name="EnemySearch" parent="Enemy State Machine" index="1"]
 attack_range = 30.0
+
+[node name="Body Shape" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(-0.5, -12)
+shape = SubResource("RectangleShape2D_sqvj3")

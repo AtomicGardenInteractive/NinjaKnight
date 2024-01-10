@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dm7t4slr82mpx"
+path="res://.godot/imported/Wizard Spell Attack.wav-909786e246794a0aa453b1ecf9ee0ff0.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/SFX PACK 2/Wizard Spell Attack.wav"
+dest_files=["res://.godot/imported/Wizard Spell Attack.wav-909786e246794a0aa453b1ecf9ee0ff0.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -28,6 +28,7 @@ func enter() -> void:
 	super()
 	parent.set_collision_mask(2)
 	parent.velocity.y = -jump_force
+	Double_Jump_FX.play()
 	return
 
 func exit() -> void:

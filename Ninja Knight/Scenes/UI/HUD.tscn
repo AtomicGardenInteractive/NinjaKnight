@@ -1,18 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsapfeuac5qdt"]
+[gd_scene load_steps=9 format=3 uid="uid://dsapfeuac5qdt"]
 
+[ext_resource type="Script" path="res://Scenes/UI/HUD.gd" id="1_31lav"]
 [ext_resource type="Texture2D" uid="uid://cy2a2sjit28pw" path="res://Assets/Sprites/HUD/Boss Bar/UNDER.tres" id="1_84lsk"]
 [ext_resource type="Texture2D" uid="uid://ry4s0q5fs2n4" path="res://Assets/Sprites/HUD/Boss Bar/OVER.tres" id="2_3nitn"]
 [ext_resource type="Texture2D" uid="uid://blu44oac3paba" path="res://Assets/Sprites/HUD/Boss Bar/PROGRESSS.tres" id="3_0ne15"]
 [ext_resource type="Texture2D" uid="uid://d043ykmupkygj" path="res://Assets/Sprites/HUD/Player/PlayerUnder.tres" id="4_va8ol"]
 [ext_resource type="Texture2D" uid="uid://boxjm478o7oqh" path="res://Assets/Sprites/HUD/Player/PlayerOver.tres" id="5_srsuh"]
 [ext_resource type="Texture2D" uid="uid://cfpay2ckktvjm" path="res://Assets/Sprites/HUD/Player/PlayerProgress.tres" id="6_y86ul"]
-[ext_resource type="Texture2D" uid="uid://b88w3853pdl1i" path="res://Assets/Sprites/Finished_Dash_Icon.png" id="7_jsikc"]
+[ext_resource type="Texture2D" uid="uid://cbwd05rxa28pc" path="res://Assets/Sprites/Dash.tres" id="7_ddyvd"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_31lav")
 
 [node name="Boss Bar" type="TextureProgressBar" parent="."]
 visible = false
@@ -39,10 +41,16 @@ texture_over = ExtResource("5_srsuh")
 texture_progress = ExtResource("6_y86ul")
 texture_progress_offset = Vector2(24, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 32.0
-offset_right = 77.0
-offset_bottom = 80.0
-texture = ExtResource("7_jsikc")
+offset_left = 43.0
+offset_top = 45.0
+offset_right = 83.0
+offset_bottom = 85.0
+max_value = 4.0
+step = 0.01
+value = 3.0
+fill_mode = 3
+texture_under = ExtResource("7_ddyvd")
+texture_progress = ExtResource("7_ddyvd")
+tint_under = Color(0.196078, 0.196078, 0.196078, 1)

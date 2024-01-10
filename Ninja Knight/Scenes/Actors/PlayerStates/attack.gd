@@ -32,12 +32,19 @@ var attack_timer = 0.0
 #sets/resets timers on state change
 func enter() -> void:
 	super()
+	Attack_FX.play()
 	attack_timer = attack_time
+	if $"../../animations".flip_h == false:
+		$"../../SwordHit/Attack Area Right".disabled = false
+	else:
+		$"../../SwordHit/Attack Area Left".disabled = false
 	return
 
 func exit() -> void:
 	super()
 	parent.attack_cooldown_timer = parent.attack_cooldown
+	$"../../SwordHit/Attack Area Right".disabled = true
+	$"../../SwordHit/Attack Area Left".disabled = true
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("attack"):

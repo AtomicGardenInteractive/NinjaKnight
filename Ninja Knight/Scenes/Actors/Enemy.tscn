@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c3508dvtauchh"]
+[gd_scene load_steps=49 format=3 uid="uid://c3508dvtauchh"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Enemy.gd" id="1_0v5gb"]
 [ext_resource type="Texture2D" uid="uid://c5yf6dn32s2o7" path="res://Assets/Sprites/Enemies/Goblin/Attack_Goblin_Character.png" id="1_2lik6"]
@@ -10,6 +10,13 @@
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyStates/EnemyIdle.gd" id="6_64p5c"]
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyStates/EnemySearch.gd" id="7_vp65v"]
 [ext_resource type="Script" path="res://Scenes/Actors/EnemyAttack.gd" id="10_o544n"]
+[ext_resource type="Script" path="res://Scenes/Actors/EnemyDamage.gd" id="11_khppa"]
+[ext_resource type="Script" path="res://Scenes/Actors/EnemyDeath.gd" id="12_8vp0s"]
+[ext_resource type="AudioStream" uid="uid://xrtvgm014fep" path="res://Assets/Sounds/SFX/SFX PACK 2/General Enemey Damaged.wav" id="13_prqm4"]
+[ext_resource type="AudioStream" uid="uid://ccsr0x585c0wr" path="res://Assets/Sounds/SFX/SFX PACK 2/General Enemey Defeated.wav" id="14_g8i16"]
+[ext_resource type="AudioStream" uid="uid://c86at3s2nacsu" path="res://Assets/Sounds/SFX/SFX PACK 2/Goblin Bonk Attack.wav" id="15_u4n7e"]
+[ext_resource type="AudioStream" uid="uid://ht1mb41ftg1r" path="res://Assets/Sounds/SFX/SFX PACK 2/Knight Sword Attack.wav" id="16_tmrvx"]
+[ext_resource type="AudioStream" uid="uid://dm7t4slr82mpx" path="res://Assets/Sounds/SFX/SFX PACK 2/Wizard Spell Attack.wav" id="17_2n76q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5fqxh"]
 atlas = ExtResource("1_2lik6")
@@ -160,11 +167,23 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ee2q5")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 12.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb75m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlfks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb75m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlfks")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pb75m")
 }, {
@@ -207,11 +226,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fv08x"]
-size = Vector2(22, 21)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wrj3r"]
 size = Vector2(22, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ffqo"]
+size = Vector2(20, 30.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k54km"]
+size = Vector2(31, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hksxr"]
 size = Vector2(22, 21)
@@ -222,29 +244,40 @@ size = Vector2(68, 59)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1jbn"]
 size = Vector2(79, 73)
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Damage_FX", "Death_FX", "Goblin_FX", "Jailer_FX", "Mage_FX") groups=["Enemies"]]
 script = ExtResource("1_0v5gb")
+Damage_FX = NodePath("Audio/Damage")
+Death_FX = NodePath("Audio/Death")
+Goblin_FX = NodePath("Audio/goblin Sword")
+Jailer_FX = NodePath("Audio/Jailer")
+Mage_FX = NodePath("Audio/mage")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_edf77")
-animation = &"Attack"
-frame = 8
-frame_progress = 1.0
-
-[node name="Body Shape" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5.5)
-shape = SubResource("RectangleShape2D_fv08x")
+animation = &"Hit"
+frame = 2
+frame_progress = 0.939185
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(-11, 0)
 target_position = Vector2(0, 20)
 
 [node name="Hitbox" type="Area2D" parent="."]
-monitoring = false
 
-[node name="Damage received collision" type="CollisionShape2D" parent="Hitbox"]
+[node name="Goblin" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-1, 5.5)
 shape = SubResource("RectangleShape2D_wrj3r")
+disabled = true
+
+[node name="Skeleton" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4.25)
+shape = SubResource("RectangleShape2D_1ffqo")
+disabled = true
+
+[node name="Jailer" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_k54km")
+disabled = true
 
 [node name="Attack Trigger Area" type="Area2D" parent="."]
 monitoring = false
@@ -296,8 +329,39 @@ attack_range = 25.0
 [node name="EnemyAttack" type="Node" parent="Enemy State Machine"]
 script = ExtResource("10_o544n")
 
+[node name="EnemyDamage" type="Node" parent="Enemy State Machine"]
+script = ExtResource("11_khppa")
+
+[node name="EnemyDeath" type="Node" parent="Enemy State Machine"]
+script = ExtResource("12_8vp0s")
+
 [node name="Marker2DLeft" type="Marker2D" parent="."]
 position = Vector2(-52, 0)
 
 [node name="Marker2DRight" type="Marker2D" parent="."]
 position = Vector2(52, 0)
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("13_prqm4")
+volume_db = -20.0
+bus = &"Effects"
+
+[node name="Death" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("14_g8i16")
+bus = &"Effects"
+
+[node name="goblin Sword" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_u4n7e")
+bus = &"Effects"
+
+[node name="Jailer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("16_tmrvx")
+bus = &"Effects"
+
+[node name="mage" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("17_2n76q")
+bus = &"Effects"
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

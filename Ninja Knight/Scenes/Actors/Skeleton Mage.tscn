@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c5cx5ggxreyla"]
+[gd_scene load_steps=31 format=3 uid="uid://c5cx5ggxreyla"]
 
 [ext_resource type="PackedScene" uid="uid://c3508dvtauchh" path="res://Scenes/Actors/Enemy.tscn" id="1_mr2u6"]
 [ext_resource type="Texture2D" uid="uid://d10m3gteq7atg" path="res://Assets/Sprites/Enemies/Skeleton Mage/Attack_Skeleton_Mage.png" id="2_6cynm"]
@@ -163,7 +163,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ds15k")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 12.0
 }, {
@@ -190,12 +190,27 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yp0a3"]
+size = Vector2(22, 31)
+
 [node name="Skeleton Mage" instance=ExtResource("1_mr2u6")]
+collision_layer = 5
+collision_mask = 5
 Type = 1
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_usbgq")
-frame = 12
+animation = &"Attack"
+frame = 0
+frame_progress = 0.0
+flip_h = true
+
+[node name="Skeleton" parent="Hitbox" index="1"]
+position = Vector2(0, 0.875)
 
 [node name="EnemySearch" parent="Enemy State Machine" index="1"]
 attack_range = 150.0
+
+[node name="Body Shape" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yp0a3")

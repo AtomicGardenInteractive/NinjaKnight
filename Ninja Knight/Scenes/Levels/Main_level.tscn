@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://desouleebohxu"]
+[gd_scene load_steps=6 format=3 uid="uid://desouleebohxu"]
 
 [ext_resource type="TileSet" uid="uid://5tkq3dlkboyk" path="res://Assets/Sprites/Environment/Main_tile_set.tres" id="1_d7x52"]
 [ext_resource type="PackedScene" uid="uid://bqap3vlbcnja3" path="res://Assets/DropPlatform.tscn" id="2_ylrce"]
+[ext_resource type="Texture2D" uid="uid://dj1niahm0layg" path="res://Assets/Sprites/Finished_Closed_Iron_Maiden.png" id="3_l2t2t"]
+[ext_resource type="Texture2D" uid="uid://d3gcineb3ltm4" path="res://Assets/Sprites/Finished_Open_Iron_Maiden.png" id="4_cu074"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_836nf"]
 
 [node name="Level" type="Node2D"]
 process_mode = 1
@@ -118,3 +122,56 @@ metadata/_edit_lock_ = true
 position = Vector2(816, -794)
 scale = Vector2(6.4, 0.6)
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMap"]
+position = Vector2(-278.58, -776)
+texture = ExtResource("3_l2t2t")
+
+[node name="Sprite2D3" type="Sprite2D" parent="TileMap"]
+position = Vector2(-446.93, -776)
+texture = ExtResource("3_l2t2t")
+
+[node name="Sprite2D2" type="Sprite2D" parent="TileMap"]
+position = Vector2(-119.248, -776)
+texture = ExtResource("4_cu074")
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+position = Vector2(1399.91, 38)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker"]
+shape = SubResource("RectangleShape2D_836nf")
+
+[node name="Blocker2" type="StaticBody2D" parent="."]
+position = Vector2(1925.01, -746)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker2"]
+shape = SubResource("RectangleShape2D_836nf")
+
+[node name="Blocker3" type="StaticBody2D" parent="."]
+position = Vector2(1063.21, -746)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker3"]
+shape = SubResource("RectangleShape2D_836nf")
+
+[node name="Blocker4" type="StaticBody2D" parent="."]
+position = Vector2(759.581, -746)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker4"]
+shape = SubResource("RectangleShape2D_836nf")
+
+[node name="Blocker5" type="StaticBody2D" parent="."]
+position = Vector2(124.259, -787)
+scale = Vector2(1, 7.68053)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blocker5"]
+shape = SubResource("RectangleShape2D_836nf")

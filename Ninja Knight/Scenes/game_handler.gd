@@ -7,7 +7,16 @@ signal toggle_game_paused(is_paused : bool)
 @export var pause_menu: Control
 @export var load_menu: Control
 @export var options_menu: Control
+@export var player: Player
+@export var HUD: Control
 
+func _ready():
+	if !player.HP_update.is_connected(HUD._on_healthbar):
+		player.HP_update.connect(HUD._on_healthbar)
+	if !player.Dash_cooldown.is_connected(HUD._on_dash_cooldown):
+		player.Dash_cooldown.connect(HUD._on_dash_cooldown)
+	
+	
 var game_paused: bool = false:
 	get:
 		return game_paused

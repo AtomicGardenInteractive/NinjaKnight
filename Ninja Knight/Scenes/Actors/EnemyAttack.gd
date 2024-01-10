@@ -5,8 +5,10 @@ var player: CharacterBody2D
 
 var animation_timer : float
 var attacking = false
+var current_health : int
 
 func enter():
+	current_health = parent.enemy_health_current
 	player = get_tree().get_first_node_in_group("Player")
 	attack()
 
@@ -19,7 +21,11 @@ func Update(_delta: float):
 	if animation_timer <= 0 && attacking == true:
 		attacking = false
 		leave()
-	pass
+	
+	if parent.enemy_health_current <= 0:
+		Transitioned.emit(self,"enemydeath")
+	elif parent.enemy_health_current != current_health:
+		Transitioned.emit(self,"enemydamage")
 
 func Physics_Update(_delta: float):
 	pass

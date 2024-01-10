@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btmacoc3wig7j"
+path="res://.godot/imported/General Pick-Up.wav-fca84cb9825def61bff6e2c6b13f834d.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/SFX/SFX PACK 2/General Pick-Up.wav"
+dest_files=["res://.godot/imported/General Pick-Up.wav-fca84cb9825def61bff6e2c6b13f834d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

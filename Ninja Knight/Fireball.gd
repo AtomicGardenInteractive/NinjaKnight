@@ -6,6 +6,7 @@ var fb_velocity = Vector2(-1,0)
 var speed = 300
 var flipsprite = false
 var deflected = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if flipsprite == true:
@@ -15,3 +16,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	move_and_collide(fb_velocity.normalized() * delta * speed)
+
+func _been_deflected():
+	fb_velocity = Vector2(1,0)
+	flipsprite = !flipsprite
+	deflected = true

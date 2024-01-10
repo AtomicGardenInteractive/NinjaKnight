@@ -1,6 +1,9 @@
 extends CharacterBody2D
 class_name Player
- 
+
+signal HP_update
+signal Dash_cooldown
+
 @onready
 var animations = $animations
 @onready
@@ -25,12 +28,18 @@ var double_jump_item: bool = false
 @export var start_checkpoint: Checkpoint
 var checkpoint_current: Checkpoint
 
+@export_group("SFX")
+@export var Pickup_FX : AudioStreamPlayer
+
 func _ready() -> void:
 	# Initialize the state machine, passing a reference of the player to the states,
 	# that way they can move and react accordingly
 	state_machine.init(self)
 	checkpoint_current = start_checkpoint
 	self.position = checkpoint_current.global_position
+
+func dodge_used():
+	Dash_cooldown.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	state_machine.process_input(event)
@@ -49,7 +58,7 @@ func _process(delta: float) -> void:
 
 func take_damage():
 	player_health_current -= 1
-	print("hurt ", player_health_current)
+	HP_update.emit(player_health_current)
 	if player_health_current <= 0:
 		die()
 
@@ -58,6 +67,7 @@ func die():
 	if checkpoint_current != null:
 		self.position = checkpoint_current.global_position
 		player_health_current = player_health_max
+		HP_update.emit(player_health_current)
 
 func _on_detector_area_entered(area):
 	var detected_object: Node2D = area.get_parent()
@@ -68,9 +78,11 @@ func _on_detector_area_entered(area):
 	
 	if detected_object is Pickup:
 		var picked_up_item: Pickup = detected_object
+		Pickup_FX.play()
 		match picked_up_item.type:
 			picked_up_item.Pickup_type.Health:
-				player_health_current += 1
+				player_health_current += 2
+				HP_update.emit(player_health_current)
 				picked_up_item.queue_free()
 				
 			picked_up_item.Pickup_type.Double_item:
@@ -86,8 +98,11 @@ func _on_detector_area_entered(area):
 		take_damage()
 	
 	if detected_object is Fireball :
-		print(detected_object.name)
-		take_damage()
+		if $state_machine.current_state == $state_machine/block:
+			detected_object._been_deflected
+		else:
+			take_damage()
+			detected_object.queue_free()
 	
 	if detected_object is Enemy :
 		print(detected_object.name)

@@ -1,0 +1,6 @@
+[gd_resource type="CanvasTexture" load_steps=2 format=3 uid="uid://lwh17rp8072c"]
+
+[ext_resource type="Texture2D" uid="uid://cbwd05rxa28pc" path="res://Assets/Sprites/Dash.tres" id="1_5xxx6"]
+
+[resource]
+diffuse_texture = ExtResource("1_5xxx6")

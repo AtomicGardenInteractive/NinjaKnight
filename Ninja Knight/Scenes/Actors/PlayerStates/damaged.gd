@@ -15,6 +15,7 @@ var launch_force_sideways: Vector2 = Vector2(200,0)
 
 func enter() -> void:
 	super()
+	Damage_FX.play()
 	print("damaged entered")
 	if parent.animations.flip_h == true:
 		parent.velocity = (launch_force_up + launch_force_sideways)

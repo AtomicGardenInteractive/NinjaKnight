@@ -7,9 +7,11 @@ class_name EnemySearch
 @export var attack_range: float= 30.0
 
 var player: CharacterBody2D
+var current_health : int
 
 func enter():
 	player = get_tree().get_first_node_in_group("Player")
+	current_health = parent.enemy_health_current
 
 func Physics_Update(_delta: float):
 	var direction = (player.global_position - enemy.global_position).normalized().x
@@ -20,3 +22,8 @@ func Physics_Update(_delta: float):
 		Transitioned.emit(self,"enemyattack")
 	if player.global_position.distance_to(enemy.global_position) > sight_range:
 		Transitioned.emit(self,"enemyidle")
+		
+	if parent.enemy_health_current <= 0:
+		Transitioned.emit(self,"enemydeath")
+	elif parent.enemy_health_current != current_health:
+		Transitioned.emit(self,"enemydamage")

@@ -11,7 +11,9 @@ var anim_finished = false
 
 func enter() -> void:
 	super()
+	Death_FX.play()
 	leaver()
+	
 
 func leaver():
 	await $"../../animations".animation_finished

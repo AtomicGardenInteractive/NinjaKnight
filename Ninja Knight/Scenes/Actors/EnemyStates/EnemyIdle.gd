@@ -9,6 +9,7 @@ var player: CharacterBody2D
 
 var move_direction : float
 var wander_time: float
+var current_health : int
 
 func randomise_wander():
 	move_direction = randi_range(-1, 1)
@@ -18,6 +19,7 @@ func enter():
 	super()
 	player = get_tree().get_first_node_in_group("Player")
 	randomise_wander()
+	current_health = parent.enemy_health_current
 
 func Update(delta: float):
 	if wander_time > 0:
